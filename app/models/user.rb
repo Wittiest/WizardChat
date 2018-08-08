@@ -19,7 +19,15 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  # Associations here
+  has_many :messages,
+  class_name: :Message,
+  foreign_key: :author_id
+
+  has_many :chat_users
+
+  has_many :chats,
+  through: :chat_users,
+  source: :chat
 
   after_initialize :ensure_session_token
 
