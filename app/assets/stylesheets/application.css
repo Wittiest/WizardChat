@@ -116,6 +116,9 @@ html {
 
 .error {
   color: #d50000;
-  list-style: none;
   text-align: center;
+}
+
+.empty_error {
+  padding-bottom: 27px;
 }

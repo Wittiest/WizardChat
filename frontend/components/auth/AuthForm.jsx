@@ -15,6 +15,7 @@ class AuthForm extends React.Component {
     this.demoHandler = this.demoHandler.bind(this);
     this.renderLoginInputs = this.renderLoginInputs.bind(this);
     this.renderSignupInputs = this.renderSignupInputs.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   submitHandler(e) {
@@ -75,9 +76,18 @@ class AuthForm extends React.Component {
     }
   }
 
+  renderErrors() {
+    if (this.props.errors.length > 0) {
+      return <AuthErrors errors={this.props.errors}/>;
+    } else {
+      return <div className="empty_error"><p></p></div>;
+    }
+  }
+
   render() {
     const loginInput = this.renderLoginInputs();
     const signupInputs = this.renderSignupInputs();
+    const errors = this.renderErrors();
     return (
       <div className="auth-div">
         <AuthHeader />
@@ -87,7 +97,7 @@ class AuthForm extends React.Component {
           to={this.props.altLinkPath}
           >{this.props.linkText}
         </Link>
-        <AuthErrors errors={this.props.errors}/>
+        {errors}
         <form className="auth-form" onSubmit={this.submitHandler}>
           {signupInputs}
           <input
