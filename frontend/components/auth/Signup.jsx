@@ -7,7 +7,7 @@ class Signup extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {email: '', password: '', birth_date: '01-01-0000',
+    this.state = {email: '', password: '',
                   first_name: '', last_name: ''
                 };
     this.submitHandler = this.submitHandler.bind(this);
@@ -50,25 +50,18 @@ class Signup extends React.Component {
             type="text"
             placeholder="Last name">
           </input>
-            <input
-              className="auth-textbox"
-              onChange={this.updateHandler('email')}
-              type="text"
-              placeholder="Email">
-            </input>
-            <input
-              className="auth-textbox"
-              onChange={this.updateHandler('password')}
-              type="password"
-              placeholder="Password">
-            </input>
-          <label className="auth-h2">Birthday
-            <input
-              className="auth-textbox"
-              onChange={this.updateHandler('birth_date')}
-              type="date">
-            </input>
-          </label>
+          <input
+            className="auth-textbox"
+            onChange={this.updateHandler('email')}
+            type="text"
+            placeholder="Email">
+          </input>
+          <input
+            className="auth-textbox"
+            onChange={this.updateHandler('password')}
+            type="password"
+            placeholder="Password">
+          </input>
           <input
             className="auth-button"
             type="submit"

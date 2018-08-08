@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
 user1 = User.new(email: "harry@hogwarts.edu", first_name: "Harry",
-          last_name: "Potter", birth_date: "1980-07-31", password: "123456")
+          last_name: "Potter", password: "123456")
 user2 = User.new(email: "draco@hogwarts.edu", first_name: "Draco",
-          last_name: "Malfoy", birth_date: "1990-06-05", password: "123456")
+          last_name: "Malfoy", password: "123456")
 user1.save!
 user2.save!
