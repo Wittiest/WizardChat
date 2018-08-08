@@ -22,3 +22,72 @@
   text-align: center;
   color: #a8a8a8;
 }
+
+.auth-h1 {
+  color: rgba(0, 0, 0, 1);
+  font-size: 40px;
+  font-weight: 300;
+  margin-bottom: 12px;
+  text-align: center;
+  display: block;
+  font-family: Helvetica Neue, Helvetica
+}
+
+.auth-h2 {
+  color: rgba(0, 0, 0, .75);
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 6px;
+  width: 100%;
+  font-family: Helvetica Neue, Helvetica;
+  display: block;
+}
+
+.bigger-margin {
+  margin-bottom: 30px;
+}
+
+.auth-textbox {
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 4px;
+  color: rgba(0,0,0,1);
+  display: block;
+  font-family: Helvetica Neue, Helvetica;
+  font-size: 17px;
+  height: 42px;
+  margin-left: atuo;
+  margin-right: auto;
+  padding: 0 16px;
+  width: 286px;
+}
+
+.auth-form {
+  margin: 0 auto;
+  width: 320px;
+  text-align: left;
+  display: block;
+}
+
+.auth-button {
+  background-color: #0084ff;
+  border: 1px solid #0084ff;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: Helvetica Neue, Helvetica;
+  font-size: 17px;
+  height: 44px;
+  margin-bottom: 24px;
+  padding: 0;
+  width: 318px;
+}
+
+html {
+  height: 100%;
+  background-image:
+    linear-gradient(
+      white, lightblue
+    );
+}

@@ -24,10 +24,11 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>WizardChat</h1>
-        <h2>Instantly connect with other wizards!</h2>
-        <h2>Sign in with WizardChat to get started.</h2>
+      <div className="auth-div">
+        <h1 className="auth-h1">WizardChat</h1>
+        <h2 className="auth-h2 bigger-margin">Instantly connect with other wizards in your life!</h2>
+        <h2 className="auth-h2">No Account?</h2>
+        <Link className="auth-h2" to="/signup">Sign Up</Link>
         <ul>
           {
             this.props.errors.map((error, idx)=>{
@@ -35,28 +36,27 @@ class Login extends React.Component {
             })
           }
         </ul>
-        <form onSubmit={this.submitHandler}>
-          <label>Email
+        <form className="auth-form" onSubmit={this.submitHandler}>
             <input
+              className="auth-textbox"
               onChange={this.updateHandler('email')}
-              type="text">
+              type="text"
+              placeholder="Email">
             </input>
-          </label>
           <br />
-          <label>Password
             <input
+              className="auth-textbox"
               onChange={this.updateHandler('password')}
-              type="password">
+              type="password"
+              placeholder="Password">
             </input>
-          </label>
           <br />
           <input
+            className="auth-button"
             type="submit"
             value="Log In">
           </input>
         </form>
-        <Link to="/signup">Signup Page Link</Link>
-
       </div>
     );
   }

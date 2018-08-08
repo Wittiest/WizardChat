@@ -26,9 +26,10 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>WizardChat</h1>
-        <h2>Sign up for WizardChat!</h2>
+      <div className="auth-div">
+        <h1 className="auth-h1">WizardChat</h1>
+        <h2 className="auth-h2">Already have an account?</h2>
+        <Link className="auth-h2" to="/">Log In</Link>
         <ul>
           {
             this.props.errors.map((error, idx)=>{
@@ -36,49 +37,44 @@ class Signup extends React.Component {
             })
           }
         </ul>
-        <form onSubmit={this.submitHandler}>
-          <label>Email
+        <form className="auth-form" onSubmit={this.submitHandler}>
+          <input
+            className="auth-textbox"
+            onChange={this.updateHandler('first_name')}
+            type="text"
+            placeholder="First name">
+          </input>
+          <input
+            className="auth-textbox"
+            onChange={this.updateHandler('last_name')}
+            type="text"
+            placeholder="Last name">
+          </input>
             <input
+              className="auth-textbox"
               onChange={this.updateHandler('email')}
-              type="text">
+              type="text"
+              placeholder="Email">
             </input>
-          </label>
-          <br />
-          <label>Password
             <input
+              className="auth-textbox"
               onChange={this.updateHandler('password')}
-              type="password">
+              type="password"
+              placeholder="Password">
             </input>
-          </label>
-          <br />
-          <label>Birth Date
+          <label className="auth-h2">Birthday
             <input
+              className="auth-textbox"
               onChange={this.updateHandler('birth_date')}
               type="date">
             </input>
           </label>
-          <br />
-          <label>First Name
-            <input
-              onChange={this.updateHandler('first_name')}
-              type="text">
-            </input>
-          </label>
-          <br />
-          <label>Last Name
-            <input
-              onChange={this.updateHandler('last_name')}
-              type="text">
-            </input>
-          </label>
-          <br />
           <input
+            className="auth-button"
             type="submit"
             value="Sign Up!">
           </input>
         </form>
-        <Link to="/">Login Page Link</Link>
-
       </div>
     );
   }
