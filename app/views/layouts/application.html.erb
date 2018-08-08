@@ -4,9 +4,15 @@
     <title>WizardChat</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link rel="icon" href="https://i.imgur.com/eqCpW4e.png">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%if current_user %>
+      <script type="text/javascript">
+      window.currentUser = <%= render('api/users/user.json.jbuilder',
+      user: current_user).html_safe %>
+      </script>
+    <% end %>
   </head>
 
   <body>

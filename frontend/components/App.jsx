@@ -9,9 +9,9 @@ import Footer from './Footer';
 const App = () => (
   <div>
     <Switch>
-      <ProtectedRoute exact path="/chats" component={ChatIndex}/>
       <AuthRoute exact path="/" component={Login}/>
       <AuthRoute exact path="/signup" component={Signup}/>
+      <ProtectedRoute exact path="/chats" component={ChatIndex}/>
       <Redirect to="/" />
     </Switch>
     <Footer />

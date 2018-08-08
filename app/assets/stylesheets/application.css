@@ -12,15 +12,24 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
+
 #footer {
-  background-color: lightblue;
+  background-color: #323940;
   bottom: 0;
+  left: 0;
   position: absolute;
   width: 100%;
   text-align: center;
   color: #a8a8a8;
+  display: flex;
+  justify-content: space-around;
+  font-family: Helvetica Neue, Helvetica;
+  color: rgba(255, 255, 255, .4);
+  letter-spacing: .2px;
+  font-size: 13px;
 }
 
 .auth-h1 {
@@ -83,6 +92,12 @@
   padding: 0;
   width: 318px;
   cursor: pointer;
+  margin: 10px auto;
+}
+
+#demo {
+  background-color: #0084ff;
+  border: 1px solid #0084ff;
 }
 
 html {

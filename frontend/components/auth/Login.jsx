@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/auth_actions';
+import { login, receiveAuthErrors } from '../../actions/auth_actions';
 import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -20,6 +20,10 @@ class Login extends React.Component {
 
   updateHandler(fieldName) {
     return (e => this.setState({ [fieldName]: e.target.value }));
+  }
+
+  componentWillUnmount() {
+    this.props.receiveAuthErrors([]);
   }
 
   render() {
@@ -55,6 +59,7 @@ class Login extends React.Component {
             value="Log In">
           </input>
         </form>
+        <button id="demo" className="auth-button">Demo Login</button>
       </div>
     );
   }
@@ -65,7 +70,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (loginDetails) => dispatch(login(loginDetails))
+  login: (loginDetails) => dispatch(login(loginDetails)),
+  receiveAuthErrors: (errors) => dispatch(receiveAuthErrors(errors))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

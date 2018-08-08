@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signup } from '../../actions/auth_actions';
+import { signup, receiveAuthErrors } from '../../actions/auth_actions';
 import { Link } from 'react-router-dom';
 
 class Signup extends React.Component {
@@ -17,11 +17,15 @@ class Signup extends React.Component {
   submitHandler(e) {
     e.preventDefault();
     this.props.signup(this.state);
-    this.props.history.push('/chats');
   }
 
   updateHandler(fieldName) {
     return (e => this.setState({ [fieldName]: e.target.value }));
+  }
+
+  componentWillUnmount() {
+    this.props.receiveAuthErrors([]);
+    this.props.history.push('/chats');
   }
 
   render() {
@@ -79,7 +83,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  signup: (signupDetails) => dispatch(signup(signupDetails))
+  signup: (signupDetails) => dispatch(signup(signupDetails)),
+  receiveAuthErrors: (errors) => dispatch(receiveAuthErrors(errors))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

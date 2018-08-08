@@ -14,7 +14,7 @@ const removeCurrentUser = () => ({
   type: REMOVE_CURRENT_USER
 });
 
-const receiveAuthErrors = (errors) => ({
+export const receiveAuthErrors = (errors) => ({
   type: RECEIVE_AUTH_ERRORS,
   errors
 });
@@ -22,14 +22,14 @@ const receiveAuthErrors = (errors) => ({
 export const signup = user => dispatch => {
   AuthUtil.signup(user).then(
     currentUser => dispatch(receiveCurrentUser(currentUser)),
-    errors => dispatch(receiveAuthErrors(errors))
+    errors => dispatch(receiveAuthErrors(errors.responseJSON))
   );
 };
 
 export const login = user => dispatch => {
   AuthUtil.login(user).then(
     currentUser => dispatch(receiveCurrentUser(currentUser)),
-    errors => dispatch(receiveAuthErrors(errors))
+    errors => dispatch(receiveAuthErrors(errors.responseJSON))
   );
 };
 
@@ -37,6 +37,6 @@ export const login = user => dispatch => {
 export const logout = () => dispatch => {
   AuthUtil.logout().then(
     () => dispatch(removeCurrentUser()),
-    errors => dispatch(receiveAuthErrors(errors))
+    errors => dispatch(receiveAuthErrors(errors.responseJSON))
   );
 };
