@@ -21,21 +21,22 @@ const receiveAuthErrors = (errors) => ({
 
 export const signup = user => dispatch => {
   AuthUtil.signup(user).then(
-    currentUser => receiveCurrentUser(currentUser),
-    errors => receiveAuthErrors(errors)
+    currentUser => dispatch(receiveCurrentUser(currentUser)),
+    errors => dispatch(receiveAuthErrors(errors))
   );
 };
 
 export const login = user => dispatch => {
   AuthUtil.login(user).then(
-    currentUser => receiveCurrentUser(currentUser),
-    errors => receiveAuthErrors(errors)
+    currentUser => dispatch(receiveCurrentUser(currentUser)),
+    errors => dispatch(receiveAuthErrors(errors))
   );
 };
 
+
 export const logout = userId => dispatch => {
   AuthUtil.logout(userId).then(
-    () => removeCurrentUser(),
-    errors => receiveAuthErrors(errors)
+    () => dispatch(removeCurrentUser()),
+    errors => dispatch(receiveAuthErrors(errors))
   );
 };

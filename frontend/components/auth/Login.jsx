@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth_actions';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Login extends React.Component {
   submitHandler(e) {
     e.preventDefault();
     this.props.login(this.state);
+    this.props.history.push('/chats');
   }
 
   updateHandler(fieldName) {
@@ -53,6 +55,8 @@ class Login extends React.Component {
             value="Log In">
           </input>
         </form>
+        <Link to="/signup">Signup Page Link</Link>
+
       </div>
     );
   }
