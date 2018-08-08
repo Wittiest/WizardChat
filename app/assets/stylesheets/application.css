@@ -95,9 +95,9 @@
   margin: 10px auto;
 }
 
-#demo {
-  background-color: #0084ff;
-  border: 1px solid #0084ff;
+.auth-button:hover {
+  background-color: #005aaf;
+  border: 1px solid #005aaf;
 }
 
 html {

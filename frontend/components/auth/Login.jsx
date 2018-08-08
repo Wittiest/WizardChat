@@ -8,8 +8,11 @@ class Login extends React.Component {
     super(props);
 
     this.state = {email: '', password: ''};
+    this.demo = {email: 'harry@hogwarts.edu', password: '123456'};
+
     this.submitHandler = this.submitHandler.bind(this);
     this.updateHandler = this.updateHandler.bind(this);
+    this.demoHandler = this.demoHandler.bind(this);
   }
 
   submitHandler(e) {
@@ -18,6 +21,11 @@ class Login extends React.Component {
     this.props.history.push('/chats');
   }
 
+  demoHandler(e) {
+    e.preventDefault();
+    this.props.login(this.demo);
+    this.props.history.push('/chats');
+  }
   updateHandler(fieldName) {
     return (e => this.setState({ [fieldName]: e.target.value }));
   }
@@ -59,7 +67,11 @@ class Login extends React.Component {
             value="Log In">
           </input>
         </form>
-        <button id="demo" className="auth-button">Demo Login</button>
+        <button
+          className="auth-button"
+          onClick={this.demoHandler}>
+          Demo Login
+        </button>
       </div>
     );
   }
