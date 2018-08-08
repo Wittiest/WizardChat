@@ -82,6 +82,7 @@
   margin-bottom: 24px;
   padding: 0;
   width: 318px;
+  cursor: pointer;
 }
 
 html {
@@ -90,4 +91,16 @@ html {
     linear-gradient(
       white, lightblue
     );
+}
+
+.auth-logo {
+  width: 120px;
+  display: block;
+  margin: 0 auto;
+}
+
+.error {
+  color: #d50000;
+  list-style: none;
+  text-align: center;
 }

@@ -27,16 +27,17 @@ class Signup extends React.Component {
   render() {
     return (
       <div className="auth-div">
+        <img className="auth-logo" src="https://i.imgur.com/eqCpW4e.png"></img>
         <h1 className="auth-h1">WizardChat</h1>
+        <h2 className="auth-h2 bigger-margin">Instantly connect
+            with other wizards in your life!</h2>
         <h2 className="auth-h2">Already have an account?</h2>
         <Link className="auth-h2" to="/">Log In</Link>
-        <ul>
-          {
-            this.props.errors.map((error, idx)=>{
-              return (<p>{error}</p>);
-            })
-          }
-        </ul>
+        {
+          this.props.errors.map((error, idx)=>{
+            return (<p className="auth-h2 error" key={idx}>{error}</p>);
+          })
+        }
         <form className="auth-form" onSubmit={this.submitHandler}>
           <input
             className="auth-textbox"

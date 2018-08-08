@@ -25,32 +25,30 @@ class Login extends React.Component {
   render() {
     return (
       <div className="auth-div">
+        <img className="auth-logo" src="https://i.imgur.com/eqCpW4e.png"></img>
         <h1 className="auth-h1">WizardChat</h1>
-        <h2 className="auth-h2 bigger-margin">Instantly connect with other wizards in your life!</h2>
+          <h2 className="auth-h2 bigger-margin">Instantly connect
+              with other wizards in your life!</h2>
         <h2 className="auth-h2">No Account?</h2>
         <Link className="auth-h2" to="/signup">Sign Up</Link>
-        <ul>
-          {
-            this.props.errors.map((error, idx)=>{
-              return (<p>{error}</p>);
-            })
-          }
-        </ul>
+        {
+          this.props.errors.map((error, idx)=>{
+            return (<p className="auth-h2 error" key={idx}>{error}</p>);
+          })
+        }
         <form className="auth-form" onSubmit={this.submitHandler}>
-            <input
-              className="auth-textbox"
-              onChange={this.updateHandler('email')}
-              type="text"
-              placeholder="Email">
-            </input>
-          <br />
-            <input
-              className="auth-textbox"
-              onChange={this.updateHandler('password')}
-              type="password"
-              placeholder="Password">
-            </input>
-          <br />
+          <input
+            className="auth-textbox"
+            onChange={this.updateHandler('email')}
+            type="text"
+            placeholder="Email">
+          </input>
+          <input
+            className="auth-textbox"
+            onChange={this.updateHandler('password')}
+            type="password"
+            placeholder="Password">
+          </input>
           <input
             className="auth-button"
             type="submit"
