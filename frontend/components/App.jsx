@@ -7,8 +7,11 @@ import Footer from './Footer';
 
 const App = () => (
   <div>
-    <ProtectedRoute exact path="/chats" component={ChatIndex}/>
-    <Login />
+    <Switch>
+      <ProtectedRoute exact path="/chats" component={ChatIndex}/>
+      <AuthRoute exact path="/" component={Login}/>
+      <Redirect to="/" />
+    </Switch>
     <Footer />
   </div>
 );

@@ -11,7 +11,8 @@ class Login extends React.Component {
     this.updateHandler = this.updateHandler.bind(this);
   }
 
-  submitHandler() {
+  submitHandler(e) {
+    e.preventDefault();
     this.props.login(this.state);
   }
 
