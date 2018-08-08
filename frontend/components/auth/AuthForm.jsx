@@ -58,12 +58,14 @@ class AuthForm extends React.Component {
     if (this.props.formType === 'signup') {
       return (<div>
         <input
+          required
           className="auth-textbox"
           onChange={this.updateHandler('first_name')}
           type="text"
           placeholder="First name">
         </input>
         <input
+          required
           className="auth-textbox"
           onChange={this.updateHandler('last_name')}
           type="text"
@@ -89,18 +91,21 @@ class AuthForm extends React.Component {
         <form className="auth-form" onSubmit={this.submitHandler}>
           {signupInputs}
           <input
+            required
             className="auth-textbox"
             onChange={this.updateHandler('email')}
             type="text"
             placeholder="Email">
           </input>
           <input
+            required
             className="auth-textbox"
             onChange={this.updateHandler('password')}
             type="password"
             placeholder="Password">
           </input>
           <input
+            required
             className="auth-button"
             type="submit"
             value={this.props.buttonText}>
