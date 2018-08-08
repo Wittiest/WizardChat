@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { login, receiveAuthErrors } from '../../actions/auth_actions';
 import { Link } from 'react-router-dom';
+import AuthHeader from './AuthHeader';
 
 class Login extends React.Component {
   constructor(props) {
@@ -37,10 +38,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="auth-div">
-        <img className="auth-logo" src="https://i.imgur.com/eqCpW4e.png"></img>
-        <h1 className="auth-h1">WizardChat</h1>
-          <h2 className="auth-h2 bigger-margin">Instantly connect
-              with other wizards in your life!</h2>
+        <AuthHeader />
         <h2 className="auth-h2">No Account?</h2>
         <Link className="auth-h2" to="/signup">Sign Up</Link>
         {
