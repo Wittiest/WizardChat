@@ -34,8 +34,8 @@ export const login = user => dispatch => {
 };
 
 
-export const logout = userId => dispatch => {
-  AuthUtil.logout(userId).then(
+export const logout = () => dispatch => {
+  AuthUtil.logout().then(
     () => dispatch(removeCurrentUser()),
     errors => dispatch(receiveAuthErrors(errors))
   );
