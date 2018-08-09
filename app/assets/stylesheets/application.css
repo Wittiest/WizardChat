@@ -15,6 +15,10 @@
  *= require font-awesome
  */
 
+html, body {
+  height: 100%
+}
+
 
 #footer {
   background-color: #323940;
@@ -121,4 +125,18 @@ html {
 
 .empty_error {
   padding-bottom: 27px;
+}
+
+.app {
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.auth-div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

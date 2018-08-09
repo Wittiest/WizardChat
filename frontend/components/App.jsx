@@ -7,7 +7,7 @@ import ChatIndex from './chats/index';
 import Footer from './Footer';
 
 const App = () => (
-  <div>
+  <div className="app">
     <Switch>
       <AuthRoute exact path="/" component={LoginContainer}/>
       <AuthRoute exact path="/signup" component={SignupContainer}/>
