@@ -11,3 +11,11 @@ export const fetchChat = chatId => (
     url: `/api/chats/${chatId}`,
   })
 );
+
+export const createMessage = message => (
+  $.ajax({
+    method: 'POST',
+    url: `/api/chats/${message.chatId}/messages`,
+    data: { message }
+  })
+);
