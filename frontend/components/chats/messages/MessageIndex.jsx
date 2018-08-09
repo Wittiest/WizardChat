@@ -1,13 +1,12 @@
 import React from 'react';
+import MessageFeed from './MessageFeed';
+import MessageTextBox from './MessageTextBox';
 
-/*
-  Header: Title in div
-  Middle: MessageFeed (w/ MessageItems)
-  Bottom: New Message Textbox
-*/
-const MessageIndex = () => (
-  <div>
-
+const MessageIndex = ({currentConversation}) => (
+  <div className="message-index">
+    <h1>Title of current conversation</h1>
+    <MessageFeed />
+    <MessageTextBox />
   </div>
 );
 

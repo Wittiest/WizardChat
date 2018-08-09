@@ -1,42 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { logout } from '../../actions/auth_actions';
+import Sidebar from './sidebar/Sidebar';
+import MessageIndex from './messages/MessageIndex';
 
 class Index extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.submitHandler = this.submitHandler.bind(this);
-  }
-
-  submitHandler(e) {
-    e.preventDefault();
-    this.props.logout();
-    this.props.history.push('/');
-  }
 
   render() {
-    /*
-      LEFT
-        Sidebar.jsx
-      RIGHT
-        MessageIndex.jsx
-    */
     return (
-      <div>
-        <h1>THIS IS THE CHAT PAGE</h1>
-        <button onClick={this.submitHandler}>Logout</button>
+      <div className="main-index">
+        <Sidebar/>
+        <MessageIndex />
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  errors: state.errors
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default Index;
