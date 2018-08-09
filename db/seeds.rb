@@ -27,3 +27,5 @@ message2 = Message.create!(author_id: user2.id, chat_id: chat2.id,
   body: "Guys, I'm kinda afraid to kill Dumbledore!!")
 message3 = Message.create!(author_id: user1.id, chat_id: chat3.id,
   body: "BRO, YOU CAN'T JUST CALL PEOPLE MUD-BLOODS!")
+message4 = Message.create!(author_id: user2.id, chat_id: chat3.id,
+  body: "What are you going to do, potter?")

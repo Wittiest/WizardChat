@@ -1,11 +1,8 @@
-// import actions
+import { combineReducers } from 'redux';
+import chatsReducer from './chatsReducer';
 
-const entitiesReducer = (state = {}, action) => {
-  Object.freeze(state);
-  switch(action.type) {
-    default:
-      return state;
-  }
-};
+const entitiesReducer = combineReducers({
+  chats: chatsReducer,
+});
 
 export default entitiesReducer;

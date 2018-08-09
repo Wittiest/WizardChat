@@ -1,8 +1,8 @@
-// React
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/Root';
 import configureStore from './store/store';
+import { fetchChats, fetchChat } from './actions/auth_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -11,13 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = {
       session: {id: window.currentUser.id },
       entities: {
-          users: { [window.currentUser.id]: window.currentUser}
+        chats: {}
       }
     };
     store = configureStore(preloadedState);
   } else {
     store = configureStore();
   }
-  window.store = store;
   ReactDOM.render(<Root store={store}/>, root);
 });
