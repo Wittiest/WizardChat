@@ -16,6 +16,12 @@ class Index extends React.Component {
   }
 
   render() {
+    /*
+      LEFT
+        Sidebar.jsx
+      RIGHT
+        MessageIndex.jsx
+    */
     return (
       <div>
         <h1>THIS IS THE CHAT PAGE</h1>
