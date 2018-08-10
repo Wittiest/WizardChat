@@ -39,6 +39,5 @@ export const selectChatIdsFromChats = (chats) => {
   for (let i = 0; i < chats.length; i++) {
     chatIds.push(chats[i].id);
   }
-  console.log("CHATS IDs IN SELECTOR", chatIds);
   return chatIds;
 };

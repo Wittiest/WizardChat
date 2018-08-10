@@ -4,8 +4,6 @@ import {
   RECEIVE_MESSAGE
 } from '../actions/chat_actions';
 
-// TODO create selectors to retrieve messages by chat rather than loading all
-  // for each chat
 
 const messagesReducer = (state = {}, action) => {
   Object.freeze(state);

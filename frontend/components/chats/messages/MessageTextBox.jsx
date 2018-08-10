@@ -39,7 +39,6 @@ class MessageTextBox extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("CHANGING CHAT ID", state.currentChatData.id);
   return ({
       currentChatId: state.currentChatData.id,
     });

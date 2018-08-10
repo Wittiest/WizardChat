@@ -28,7 +28,6 @@ class MessageFeed extends React.Component {
         console.log("---DISCONNECTED---");
       },
       received: (data) => {
-        console.log("DATA:", data);
         this.props.receiveMessage(data);
       }
     });
@@ -36,6 +35,7 @@ class MessageFeed extends React.Component {
 
   componentDidMount() {
       this.props.chatIds.forEach((id)=>{
+        console.log("fetching", id);
         this.props.fetchChat(id);
         this.createSocket(id);
       });
