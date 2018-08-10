@@ -11,7 +11,7 @@ class MessageFeed extends React.Component {
   }
 
   createSocket() {
-    let cable = Cable.createConsumer('http://localhost:3000/cable');
+    let cable = Cable.createConsumer('wss:3000/cable');
     this.chats = cable.subscriptions.create({
       channel: "MessagesChannel",
       chatId: this.props.currentChatId
