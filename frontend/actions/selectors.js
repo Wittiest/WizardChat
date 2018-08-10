@@ -28,9 +28,7 @@ export const selectChatMessages = (chatId, messages) => {
   const messagesInChat = [];
   Object.values(messages).forEach((msg)=>{
     if (msg.chatId === chatId) {
-      console.log("ADDING");
       messagesInChat.push(msg);
-      console.log("array---", messagesInChat);
     }
   });
   return messagesInChat;
