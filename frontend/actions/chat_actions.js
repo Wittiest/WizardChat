@@ -1,4 +1,5 @@
 import * as ChatUtil from '../util/api/chat_util';
+import { selectChatsInOrder } from './selectors';
 
 export const RECEIVE_CHAT = 'RECEIVE_CHAT';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
@@ -33,7 +34,10 @@ export const receiveChatErrors = (errors) => ({
 
 export const fetchChats = () => dispatch => {
   ChatUtil.fetchChats().then(
-    (payload) => dispatch(receiveChats(payload)),
+    (payload) => {
+      dispatch(receiveChats(payload));
+      dispatch(receiveCurrentChatId(selectChatsInOrder(payload.chats)[0].id));
+    },
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };

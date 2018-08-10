@@ -1,6 +1,6 @@
 import {
   RECEIVE_CURRENT_CHAT_ID
-} from '../actions/auth_actions';
+} from '../actions/chat_actions';
 
 const _nullChatData = { id: null };
 

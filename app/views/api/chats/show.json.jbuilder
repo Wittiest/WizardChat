@@ -4,5 +4,6 @@
     json.author message.author.first_name
     json.created_at message.created_at
     json.body message.body
+    json.chat_id message.chat_id
   end
 end

@@ -3,15 +3,17 @@ import MessageItem from './MessageItem';
 import Cable from 'actioncable';
 import { connect } from 'react-redux';
 import { receiveMessage, fetchChat } from '../../../actions/chat_actions';
+import { selectChatMessages } from '../../../actions/selectors';
 
 class MessageFeed extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   createSocket() {
-    let cable = Cable.createConsumer('wss://wizard-chat.herokuapp.com/cable');
+    let cable;
+    if (process.env.NODE_ENV !== 'production') {
+      cable = Cable.createConsumer('http://localhost:3000/cable');
+    } else {
+      cable = Cable.createConsumer('wss://wizard-chat.herokuapp.com/cable');
+    }
     this.chats = cable.subscriptions.create({
       channel: "MessagesChannel",
       chatId: this.props.currentChatId
@@ -30,9 +32,9 @@ class MessageFeed extends React.Component {
     });
   }
 
-  componentWillMount() {
-    this.props.fetchChat(this.props.currentChatId);
-    this.createSocket();
+  componentDidMount() {
+      this.props.fetchChat(this.props.currentChatId);
+      this.createSocket();
   }
 
   render() {
@@ -40,7 +42,7 @@ class MessageFeed extends React.Component {
     return (
       <div className="message-feed">
         {
-          Object.values(messages).map((message, idx)=>{
+          messages.map((message, idx)=>{
             return(<MessageItem key={idx} message={message} />);
           })
       };
@@ -50,11 +52,11 @@ class MessageFeed extends React.Component {
 }
 
 
-const mapStateToProps = (state, {currentChatId}) => {
+const mapStateToProps = (state) => {
   return (
     {
-      currentChatId,
-      messages: state.entities.messages
+      currentChatId: state.currentChatData.id,
+      messages: selectChatMessages(state.currentChatData.id, state.entities.messages)
     }
   );
 };

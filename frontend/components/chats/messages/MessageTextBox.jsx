@@ -35,10 +35,10 @@ class MessageTextBox extends React.Component {
   }
 }
 
-const mapStateToProps = (state, {currentChatId}) => {
-  return (
-    {currentChatId}
-  );
+const mapStateToProps = (state) => {
+  return ({
+      currentChatId: state.currentChatData.id,
+    });
 };
 
 const mapDispatchToProps = (dispatch) => ({

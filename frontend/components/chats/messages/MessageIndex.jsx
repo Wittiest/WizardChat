@@ -1,19 +1,32 @@
 import React from 'react';
 import MessageFeed from './MessageFeed';
 import MessageTextBoxContainer from './MessageTextBox';
+import { connect } from 'react-redux';
 
 class MessageIndex extends React.Component {
 
   render() {
-    const currentChatId = this.props.currentChatId;
+    let messageFeed;
+    if (!this.props.currentChatId) {
+      return (<div></div>);
+    }
     return (
       <div className="message-index">
         <h1>Title of current chat</h1>
-        <MessageFeed currentChatId={currentChatId} />
-        <MessageTextBoxContainer currentChatId={currentChatId}/>
+        <MessageFeed />
+        <MessageTextBoxContainer />
       </div>
     );
   }
 }
 
-export default MessageIndex;
+
+const mapStateToProps = (state) => {
+  return (
+    {
+      currentChatId: state.currentChatData.id
+    }
+  );
+};
+
+export default connect(mapStateToProps, null)(MessageIndex);
