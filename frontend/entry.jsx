@@ -8,10 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
     const preloadedState = {
-      session: {id: window.currentUser.id },
-      entities: {
-        chats: {}
-      }
+      session: {id: window.currentUser.id }
     };
     store = configureStore(preloadedState);
   } else {

@@ -5,7 +5,7 @@ import { createMessage } from '../../../actions/chat_actions';
 class MessageTextBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {body: '', chatId: props.currentChat};
+    this.state = {body: '', chatId: props.currentChatId};
     this.updateHandler = this.updateHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
   }
@@ -17,7 +17,7 @@ class MessageTextBox extends React.Component {
   submitHandler(e) {
     e.preventDefault();
     this.props.createMessage(this.state);
-    this.setState({body: '', chatId: this.props.currentChat});
+    this.setState({body: '', chatId: this.props.currentChatId});
   }
 
   render() {
@@ -35,9 +35,9 @@ class MessageTextBox extends React.Component {
   }
 }
 
-const mapStateToProps = (state, {currentChat}) => {
+const mapStateToProps = (state, {currentChatId}) => {
   return (
-    {currentChat}
+    {currentChatId}
   );
 };
 

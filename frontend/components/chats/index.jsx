@@ -5,14 +5,14 @@ import MessageIndex from './messages/MessageIndex';
 class Index extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { currentChat:  20};
+    this.state = { currentChatId:  20};
   }
 
   render() {
     return (
       <div className="main-index">
         <Sidebar/>
-        <MessageIndex currentChat={this.state.currentChat} />
+        <MessageIndex currentChatId={this.state.currentChatId} />
       </div>
     );
   }

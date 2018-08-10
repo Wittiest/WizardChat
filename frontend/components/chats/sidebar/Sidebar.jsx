@@ -1,7 +1,7 @@
 import React from 'react';
 import ToolbarContainer from './Toolbar';
 import Searchbar from './Searchbar';
-import ConversationFeed from './ConversationFeed';
+import ChatFeed from './ChatFeed';
 
 class Sidebar extends React.Component {
   render () {
@@ -9,7 +9,7 @@ class Sidebar extends React.Component {
       <div className="sidebar">
         <ToolbarContainer />
         <Searchbar />
-        <ConversationFeed />
+        <ChatFeed />
       </div>
     );
   }

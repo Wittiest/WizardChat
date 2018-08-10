@@ -6,7 +6,6 @@ test:
   adapter: async
 
 
-# TODO:
 production:
   adapter: redis
   url: redis://redistogo:759de0e15a81fdc743e15f13dab69126@spinyfin.redistogo.com:9306/

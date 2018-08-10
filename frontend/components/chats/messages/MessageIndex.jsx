@@ -2,16 +2,18 @@ import React from 'react';
 import MessageFeed from './MessageFeed';
 import MessageTextBoxContainer from './MessageTextBox';
 
-// class MessageIndex extends React.Component {
-//
-// }
+class MessageIndex extends React.Component {
 
-const MessageIndex = ({currentChat}) => (
-  <div className="message-index">
-    <h1>Title of current conversation</h1>
-    <MessageFeed currentChat={currentChat} />
-    <MessageTextBoxContainer currentChat={currentChat}/>
-  </div>
-);
+  render() {
+    const currentChatId = this.props.currentChatId;
+    return (
+      <div className="message-index">
+        <h1>Title of current chat</h1>
+        <MessageFeed currentChatId={currentChatId} />
+        <MessageTextBoxContainer currentChatId={currentChatId}/>
+      </div>
+    );
+  }
+}
 
 export default MessageIndex;

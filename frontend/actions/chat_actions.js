@@ -4,16 +4,21 @@ export const RECEIVE_CHAT = 'RECEIVE_CHAT';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
 export const RECEIVE_CHAT_ERRORS = 'RECEIVE_AUTH_ERRORS';
+export const RECEIVE_CURRENT_CHAT_ID = 'RECEIVE_CURRENT_CHAT_ID';
 
-
-const receiveChats = (chats) => ({
-  type: RECEIVE_CHATS,
-  chats
+export const receiveCurrentChatId = (chatId) => ({
+  type: RECEIVE_CURRENT_CHAT_ID,
+  chatId
 });
 
-export const receiveChat = (payload) => ({
-  type: RECEIVE_CHAT,
+const receiveChats = (payload) => ({
+  type: RECEIVE_CHATS,
   payload
+});
+
+export const receiveChat = (messages) => ({
+  type: RECEIVE_CHAT,
+  messages
 });
 
 export const receiveMessage = (message) => ({
@@ -28,14 +33,14 @@ export const receiveChatErrors = (errors) => ({
 
 export const fetchChats = () => dispatch => {
   ChatUtil.fetchChats().then(
-    (chats) => dispatch(receiveChats(chats)),
+    (payload) => dispatch(receiveChats(payload)),
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };
 
 export const fetchChat = (chatId) => dispatch => {
   ChatUtil.fetchChat(chatId).then(
-    (chat) => dispatch(receiveChat(chat)),
+    (messages) => dispatch(receiveChat(messages)),
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };

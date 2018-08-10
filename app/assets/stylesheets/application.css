@@ -192,10 +192,10 @@ html {
   transform: translate(-50%, -50%);
 }
 
-.conversation-feed {
+.chat-feed {
   padding-left: 0;
 }
-.conversation-item {
+.chat-item {
   background-color: grey;
   width: 200px;
   list-style: none;
@@ -204,7 +204,7 @@ html {
   margin-bottom: 2px;
 }
 
-.conversation-item > h1 {
+.chat-item > h1 {
   font-size: 20px;
 }
 

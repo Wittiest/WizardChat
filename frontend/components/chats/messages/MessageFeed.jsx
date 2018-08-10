@@ -4,15 +4,6 @@ import Cable from 'actioncable';
 import { connect } from 'react-redux';
 import { receiveMessage, fetchChat } from '../../../actions/chat_actions';
 
-const fakeMessage = {
-  author: "Harry",
-  body: "Hey ron, let's go play with some trolls!",
-};
-const fakeMessage2 = {
-  author: "Malfoy",
-  body: "I'm going to kill dumbledore!!",
-};
-
 class MessageFeed extends React.Component {
 
   constructor(props) {
@@ -23,7 +14,7 @@ class MessageFeed extends React.Component {
     let cable = Cable.createConsumer('http://localhost:3000/cable');
     this.chats = cable.subscriptions.create({
       channel: "MessagesChannel",
-      chatId: this.props.currentChat
+      chatId: this.props.currentChatId
     }, {
       connected: () => {
         console.log("CONNECTED!");
@@ -32,7 +23,7 @@ class MessageFeed extends React.Component {
         console.log("---DISCONNECTED---");
       },
       received: (data) => {
-        data.chatId = this.props.currentChat;
+        data.chatId = this.props.currentChatId;
         this.props.receiveMessage(data);
         this.render();
       }
@@ -40,7 +31,7 @@ class MessageFeed extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchChat(this.props.currentChat);
+    this.props.fetchChat(this.props.currentChatId);
     this.createSocket();
   }
 
@@ -48,8 +39,6 @@ class MessageFeed extends React.Component {
     const messages = this.props.messages;
     return (
       <div className="message-feed">
-        <MessageItem message={fakeMessage} />
-        <MessageItem message={fakeMessage2} />
         {
           Object.values(messages).map((message, idx)=>{
             return(<MessageItem key={idx} message={message} />);
@@ -61,10 +50,10 @@ class MessageFeed extends React.Component {
 }
 
 
-const mapStateToProps = (state, {currentChat}) => {
+const mapStateToProps = (state, {currentChatId}) => {
   return (
     {
-      currentChat,
+      currentChatId,
       messages: state.entities.messages
     }
   );
