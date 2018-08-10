@@ -1,12 +1,16 @@
 import React from 'react';
 import MessageFeed from './MessageFeed';
-import MessageTextBox from './MessageTextBox';
+import MessageTextBoxContainer from './MessageTextBox';
 
-const MessageIndex = ({currentConversation}) => (
+// class MessageIndex extends React.Component {
+//
+// }
+
+const MessageIndex = ({currentChat}) => (
   <div className="message-index">
     <h1>Title of current conversation</h1>
-    <MessageFeed />
-    <MessageTextBox />
+    <MessageFeed currentChat={currentChat} />
+    <MessageTextBoxContainer currentChat={currentChat}/>
   </div>
 );
 

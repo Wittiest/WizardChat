@@ -1,0 +1,7 @@
+<% Chat.all.each do |chat| %>
+    App[`chat-${<%=chat.id%>}:messages`] = App.cable.subscriptions.create(
+      {channel: "MessagesChannel", chatId: <%=chat.id%>}, {
+        received: (data) => data
+      }
+    );
+<% end %>

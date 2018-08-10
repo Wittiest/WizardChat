@@ -10,7 +10,7 @@ const entitiesReducer = (state = {}, action) => {
     case RECEIVE_CHATS:
       return action.chats;
     case RECEIVE_CHAT:
-        newState[action.chat.id] = action.chat;
+        newState[action.payload.chat.id] = action.payload.chat;
       return newState;
     default:
       return state;

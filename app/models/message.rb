@@ -18,4 +18,10 @@ class Message < ApplicationRecord
   class_name: :User,
   foreign_key: :author_id
 
+  after_create_commit do
+    ActionCable.server.broadcast "chat-#{chat_id}:messages",
+      id: id,
+      body: body,
+      author: author.first_name
+  end
 end

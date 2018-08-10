@@ -1,9 +1,7 @@
 import React from 'react';
 import ConversationItem from './ConversationItem';
-
-/*
-  Contains ConversationItems in order of most recent message
-*/
+import { fetchChats } from '../../../actions/chat_actions';
+import { connect } from 'react-redux';
 
 const fakeMessage = {
   conversationName: "Troll Hunting Squad",
@@ -16,11 +14,22 @@ const fakeMessage2 = {
   lastMessageBody: "I'm going to kill dumbledore!!",
 };
 
-const ConversationFeed = () => (
-  <ul className="conversation-feed">
-    <ConversationItem message={fakeMessage} />
-    <ConversationItem message={fakeMessage2} />
-  </ul>
-);
+class ConversationFeed extends React.Component {
+  componentWillMount() {
+    this.props.fetchChats();
+  }
+  render() {
+    return (
+      <ul className="conversation-feed">
+        <ConversationItem message={fakeMessage} />
+        <ConversationItem message={fakeMessage2} />
+      </ul>
+    );
+  }
+}
 
-export default ConversationFeed;
+const mapDispatchToProps = (dispatch) => ({
+  fetchChats: () => dispatch(fetchChats()),
+});
+
+export default connect(null, mapDispatchToProps)(ConversationFeed);

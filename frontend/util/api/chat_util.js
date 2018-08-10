@@ -16,6 +16,6 @@ export const createMessage = message => (
   $.ajax({
     method: 'POST',
     url: `/api/chats/${message.chatId}/messages`,
-    data: { message }
+    data: { message: { body: message.body} }
   })
 );

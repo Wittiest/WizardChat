@@ -1,6 +1,7 @@
 import * as ChatUtil from '../util/api/chat_util';
 
 export const RECEIVE_CHAT = 'RECEIVE_CHAT';
+export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
 export const RECEIVE_CHAT_ERRORS = 'RECEIVE_AUTH_ERRORS';
 
@@ -10,9 +11,14 @@ const receiveChats = (chats) => ({
   chats
 });
 
-const receiveChat = (chat) => ({
+export const receiveChat = (payload) => ({
   type: RECEIVE_CHAT,
-  chat
+  payload
+});
+
+export const receiveMessage = (message) => ({
+  type: RECEIVE_MESSAGE,
+  message
 });
 
 export const receiveChatErrors = (errors) => ({
@@ -27,8 +33,8 @@ export const fetchChats = () => dispatch => {
   );
 };
 
-export const fetchChat = () => dispatch => {
-  ChatUtil.fetchChat().then(
+export const fetchChat = (chatId) => dispatch => {
+  ChatUtil.fetchChat(chatId).then(
     (chat) => dispatch(receiveChat(chat)),
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
@@ -36,7 +42,7 @@ export const fetchChat = () => dispatch => {
 
 export const createMessage = (message) => dispatch => {
   ChatUtil.createMessage(message).then(
-    (validMessage) => dispatch(receiveChat(validMessage)),
+    (validMessage) => dispatch(receiveMessage(validMessage)),
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };

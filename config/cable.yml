@@ -1,15 +1,12 @@
 development:
   adapter: async
 
+
 test:
   adapter: async
 
 
 # TODO:
-# RUN heroku addons:add redistogo
-# heroku config --app action-cable-example | grep REDISTOGO_URL
-# PUT REDIS URL IN PRODUCTION
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: Wizard_Chat_production
+  url: redis://redistogo:759de0e15a81fdc743e15f13dab69126@spinyfin.redistogo.com:9306/
