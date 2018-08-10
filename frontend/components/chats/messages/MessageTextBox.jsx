@@ -23,6 +23,12 @@ class MessageTextBox extends React.Component {
     this.setState({body: ''});
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentChatId != nextProps.currentChatId) {
+      this.setState({body: ''});
+    }
+  }
+
   render() {
     return (
       <form onSubmit={this.submitHandler}>
@@ -31,7 +37,8 @@ class MessageTextBox extends React.Component {
           type="text"
           onChange={this.updateHandler('body')}
           placeholder="Type a message!"
-          value={this.state.body}>
+          value={this.state.body}
+          ref = {(input) => {this.messageInput = input; }}>
         </input>
       </form>
     );
