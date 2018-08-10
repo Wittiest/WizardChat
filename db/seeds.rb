@@ -12,7 +12,7 @@ chat1 = Chat.create!(name: "Dumbledore's Army", is_group_chat: true)
 chat2 = Chat.create!(name: "Death Eaters", is_group_chat: true)
 chat3 = Chat.create!(is_group_chat: false)
 
-ChatUser.delete_all!
+ChatUser.delete_all
 chat_user1 = ChatUser.create!(user_id: user1.id, chat_id: chat1.id,
   user_nickname: "The Boy Who Lived")
 chat_user2 = ChatUser.create!(user_id: user2.id, chat_id: chat2.id,
@@ -22,7 +22,7 @@ chat_user3 = ChatUser.create!(user_id: user1.id, chat_id: chat3.id,
 chat_user3 = ChatUser.create!(user_id: user2.id, chat_id: chat3.id,
   user_nickname: "Draco Malfoy")
 
-Message.delete_all!
+Message.delete_all
 message1 = Message.create!(author_id: user1.id, chat_id: chat1.id,
   body: "Snape is such a plebe. I'd duel him any day")
 message2 = Message.create!(author_id: user2.id, chat_id: chat2.id,

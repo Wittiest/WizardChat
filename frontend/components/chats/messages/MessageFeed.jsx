@@ -3,11 +3,14 @@ import MessageItem from './MessageItem';
 import Cable from 'actioncable';
 import { connect } from 'react-redux';
 import { receiveMessage, fetchChat } from '../../../actions/chat_actions';
-import { selectChatMessages } from '../../../actions/selectors';
+import {
+  selectChatMessages,
+  selectChatIdsFromChats
+} from '../../../actions/selectors';
 
 class MessageFeed extends React.Component {
 
-  createSocket() {
+  createSocket(currentChatId) {
     let cable;
     if (process.env.NODE_ENV !== 'production') {
       cable = Cable.createConsumer('http://localhost:3000/cable');
@@ -16,7 +19,7 @@ class MessageFeed extends React.Component {
     }
     this.chats = cable.subscriptions.create({
       channel: "MessagesChannel",
-      chatId: this.props.currentChatId
+      chatId: currentChatId
     }, {
       connected: () => {
         console.log("CONNECTED!");
@@ -25,16 +28,17 @@ class MessageFeed extends React.Component {
         console.log("---DISCONNECTED---");
       },
       received: (data) => {
-        data.chatId = this.props.currentChatId;
+        console.log("DATA:", data);
         this.props.receiveMessage(data);
-        this.render();
       }
     });
   }
 
   componentDidMount() {
-      this.props.fetchChat(this.props.currentChatId);
-      this.createSocket();
+      this.props.chatIds.forEach((id)=>{
+        this.props.fetchChat(id);
+        this.createSocket(id);
+      });
   }
 
   render() {
@@ -56,6 +60,7 @@ const mapStateToProps = (state) => {
   return (
     {
       currentChatId: state.currentChatData.id,
+      chatIds: selectChatIdsFromChats(Object.values(state.entities.chats)),
       messages: selectChatMessages(state.currentChatData.id, state.entities.messages)
     }
   );

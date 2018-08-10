@@ -51,7 +51,7 @@ export const fetchChat = (chatId) => dispatch => {
 
 export const createMessage = (message) => dispatch => {
   ChatUtil.createMessage(message).then(
-    (validMessage) => dispatch(receiveMessage(validMessage)),
+    null, // We receive our own messages from broadcast. Change if we exclude
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };

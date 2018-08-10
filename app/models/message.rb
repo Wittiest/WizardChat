@@ -22,6 +22,7 @@ class Message < ApplicationRecord
     ActionCable.server.broadcast "chat-#{chat_id}:messages",
       id: id,
       body: body,
-      author: author.first_name
+      author: author.first_name,
+      chatId: chat_id
   end
 end

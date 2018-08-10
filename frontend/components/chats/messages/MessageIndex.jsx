@@ -7,12 +7,16 @@ class MessageIndex extends React.Component {
 
   render() {
     let messageFeed;
+    let name = "Direct Message";
+    if (this.props.currentChat && this.props.currentChat.name) {
+      name = this.props.currentChat.name;
+    }
     if (!this.props.currentChatId) {
       return (<div></div>);
     }
     return (
       <div className="message-index">
-        <h1>Title of current chat</h1>
+        <h1>{name}</h1>
         <MessageFeed />
         <MessageTextBoxContainer />
       </div>
@@ -24,7 +28,8 @@ class MessageIndex extends React.Component {
 const mapStateToProps = (state) => {
   return (
     {
-      currentChatId: state.currentChatData.id
+      currentChatId: state.currentChatData.id,
+      currentChat: state.entities.chats[state.currentChatData.id]
     }
   );
 };

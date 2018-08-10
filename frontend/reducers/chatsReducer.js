@@ -3,7 +3,7 @@ import {
 } from '../actions/chat_actions';
 
 
-const entitiesReducer = (state = {}, action) => {
+const chatsReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
   switch(action.type) {
@@ -14,4 +14,4 @@ const entitiesReducer = (state = {}, action) => {
   }
 };
 
-export default entitiesReducer;
+export default chatsReducer;

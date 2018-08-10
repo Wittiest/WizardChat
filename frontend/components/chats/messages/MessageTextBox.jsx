@@ -5,7 +5,7 @@ import { createMessage } from '../../../actions/chat_actions';
 class MessageTextBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {body: '', chatId: props.currentChatId};
+    this.state = {body: ''};
     this.updateHandler = this.updateHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
   }
@@ -16,8 +16,11 @@ class MessageTextBox extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.createMessage(this.state);
-    this.setState({body: '', chatId: this.props.currentChatId});
+    this.props.createMessage({
+      body: this.state.body,
+      chatId: this.props.currentChatId
+    });
+    this.setState({body: ''});
   }
 
   render() {
@@ -36,6 +39,7 @@ class MessageTextBox extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("CHANGING CHAT ID", state.currentChatData.id);
   return ({
       currentChatId: state.currentChatData.id,
     });
