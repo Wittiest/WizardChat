@@ -7,9 +7,7 @@ import { Provider } from 'react-redux';
 const Root = ({store}) => (
   <Provider store={store}>
     <HashRouter>
-      <div>
         <App />
-      </div>
     </HashRouter>
   </Provider>
 );

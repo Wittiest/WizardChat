@@ -43,13 +43,13 @@ class MessageFeed extends React.Component {
   render() {
     const messages = this.props.messages;
     return (
-      <div className="message-feed">
+      <ul className="message-feed">
         {
           messages.map((message, idx)=>{
             return(<MessageItem key={idx} message={message} />);
           })
         }
-      </div>
+      </ul>
     );
   }
 }

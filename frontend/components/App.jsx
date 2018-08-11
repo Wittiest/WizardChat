@@ -4,7 +4,6 @@ import { AuthRoute, ProtectedRoute } from '../util/routes';
 import LoginContainer from './auth/LoginContainer';
 import SignupContainer from './auth/SignupContainer';
 import ChatIndex from './chats/index';
-import Footer from './Footer';
 
 const App = () => (
   <div className="app">
@@ -14,7 +13,6 @@ const App = () => (
       <ProtectedRoute exact path="/chats" component={ChatIndex}/>
       <Redirect to="/" />
     </Switch>
-    <Footer />
   </div>
 );
 

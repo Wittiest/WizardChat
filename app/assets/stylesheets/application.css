@@ -11,8 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
- *= require_self
  *= require font-awesome
+ *= require_self
  */
 
  /* http://meyerweb.com/eric/tools/css/reset/
@@ -68,22 +68,6 @@
 
 html, body {
   height: 100%
-}
-
-
-#footer {
-  background-color: #323940;
-  bottom: 0;
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  color: #a8a8a8;
-  display: flex;
-  justify-content: space-around;
-  font-family: Helvetica Neue, Helvetica;
-  color: rgba(255, 255, 255, .4);
-  letter-spacing: .2px;
-  font-size: 13px;
 }
 
 .auth-h1 {
@@ -178,8 +162,6 @@ html {
 }
 
 .app {
-  left: 0;
-  top: 0;
   width: 100vw;
   height: 100vh;
 }
@@ -197,9 +179,8 @@ html {
 .chat-item {
   background-color: grey;
   list-style: none;
-  border: 4px solid black;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .chat-item > h1 {
@@ -211,6 +192,7 @@ html {
   background-color: rgba(0,0,0,0);
   border-color: rgba(0,0,0,0);
   cursor: pointer;
+  height: 64px;
 }
 
 .toolbar {
@@ -232,8 +214,41 @@ html {
   font-size: 20px;
 }
 
-.searchbar {
+.searchbar-label {
+  padding: 0 5px;
+  box-sizing: border-box;
+}
 
+.icon-shift {
+  position: absolute;
+  left: 14px;
+  top: 62px;
+}
+
+.searchbar {
+  border-radius: 5px;
+  background-color: #f5f6f7;
+  border-style: none;
+  padding-left: 25px;
+  height: 30px;
+  width: 85%;
+}
+
+.fa-search {
+  color: lightgrey;
+}
+
+.fa-pencil-square-o {
+  color: #0071E3;
+}
+
+.fa-cog {
+  color: #0071E3;
+}
+
+.searchbar-holder {
+  width: 100%;
+  padding: 5px;
 }
 
 .message-index {
@@ -279,4 +294,8 @@ html {
   padding: 8px;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(0, 0, 0, .10)
+}
+
+.message-feed {
+  overflow: scroll;
 }
