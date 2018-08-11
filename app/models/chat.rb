@@ -19,6 +19,6 @@ class Chat < ApplicationRecord
   source: :user
 
   def first_message
-    messages.sort {|m1, m2| m1 <=> m2}.first
+    messages.sort {|m1, m2| m2.id <=> m1.id}.first
   end
 end

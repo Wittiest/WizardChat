@@ -48,7 +48,7 @@ class MessageFeed extends React.Component {
           messages.map((message, idx)=>{
             return(<MessageItem key={idx} message={message} />);
           })
-      };
+        }
       </div>
     );
   }
