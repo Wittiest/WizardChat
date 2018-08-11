@@ -18,11 +18,11 @@ class Toolbar extends React.Component {
   render () {
     return (
       <div className="toolbar">
-        <button onClick={this.submitHandler}>
-          <i className="fa fa-cog" aria-hidden="true"></i>
+        <button className="gear-button" onClick={this.submitHandler}>
+          <i className="fa fa-cog fa-2x" aria-hidden="true"></i>
         </button>
         <h1>WizardChat</h1>
-        <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i className="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
       </div>
     );
   }
