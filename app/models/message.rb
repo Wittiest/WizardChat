@@ -23,6 +23,7 @@ class Message < ApplicationRecord
       id: id,
       body: body,
       author: author.first_name,
-      chatId: chat_id
+      chatId: chat_id,
+      authorId: author_id
   end
 end

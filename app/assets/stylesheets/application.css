@@ -233,6 +233,9 @@ html {
   height: 30px;
   width: 85%;
 }
+.searchbar:focus {
+  outline-width: 0;
+}
 
 .fa-search {
   color: lightgrey;
@@ -260,12 +263,42 @@ html {
 
 .message-text-box {
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, .10);
-  border-bottom: 1px solid rgba(0, 0, 0, .10);
+  height: 50px;
+  background-color: rgb(255,255,255);
+  /* border-top: 1px solid rgba(0, 0, 0, .10);
+  border-bottom: 1px solid rgba(0, 0, 0, .10); */
+}
+
+.message-input {
+  border-style: none;
+  width: 100%;
+}
+.message-input:focus {
+  outline-width: 0;
 }
 
 .message-item {
+  display: flex;
+  align-items: flex-end;
   margin-top: 5px;
+}
+
+.message-item-text {
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 10px;
+  background-color: lightgrey;
+}
+
+.left {
+  flex-direction: row;
+}
+
+.right {
+  flex-direction: row-reverse;
+}
+
+.my-color {
   background-color: #6F86DC;
 }
 
@@ -296,6 +329,12 @@ html {
   border-bottom: 1px solid rgba(0, 0, 0, .10)
 }
 
+.message-feed-div {
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1;
+  justify-content: flex-start;
+}
 .message-feed {
-  overflow: scroll;
 }

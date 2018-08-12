@@ -1,10 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-/*
-  Displays messages from authors w/ author pic and body of message
-*/
-const MessageItem = ({message}) => (
-  <li className="message-item">{message.author + ": " + message.body}</li>
-);
+const MessageItem = ({message, currentUserId}) => {
+  let side = "left";
+  let color = "";
+  if (currentUserId === message.authorId) {
+    side = "right";
+    color = "my-color";
+  }
+  return (
+    <li className={`message-item ${side}`}>
+      <span className={` message-item-text ${color}`}>
+        {message.author + ": " + message.body}
+      </span>
+    </li>
+  );
+};
 
-export default MessageItem;
+const mapStateToProps = (state, {message}) => ({
+  currentUserId: state.session.id,
+  message
+});
+
+export default connect(mapStateToProps, null)(MessageItem);

@@ -28,6 +28,7 @@ class MessageFeed extends React.Component {
         console.log("---DISCONNECTED---");
       },
       received: (data) => {
+        console.log("DATA", data);
         this.props.receiveMessage(data);
       }
     });
@@ -42,14 +43,17 @@ class MessageFeed extends React.Component {
 
   render() {
     const messages = this.props.messages;
+    console.log("messages", messages);
     return (
-      <ul className="message-feed">
-        {
-          messages.map((message, idx)=>{
-            return(<MessageItem key={idx} message={message} />);
-          })
-        }
-      </ul>
+      <div className="message-feed-div">
+        <ul className="message-feed">
+          {
+            messages.map((message, idx)=>{
+              return(<MessageItem key={idx} message={message} />);
+            })
+          }
+        </ul>
+      </div>
     );
   }
 }

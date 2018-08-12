@@ -34,6 +34,7 @@ class MessageTextBox extends React.Component {
       <form className="message-text-box" onSubmit={this.submitHandler}>
         <input
           type="text"
+          className="message-input"
           onChange={this.updateHandler('body')}
           placeholder="Type a message!"
           value={this.state.body}

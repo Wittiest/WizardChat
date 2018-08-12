@@ -14,6 +14,7 @@ json.messages do
     json.set! msg.id do
       json.extract! msg, :body, :created_at, :chat_id
       json.author msg.author.first_name
+      json.author_id msg.author_id
     end
   end
 end
