@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageFeed from './MessageFeed';
 import MessageTextBoxContainer from './MessageTextBox';
+import UserSearchbar from './UserSearchbar';
 import { connect } from 'react-redux';
 
 class MessageIndex extends React.Component {
@@ -16,7 +17,10 @@ class MessageIndex extends React.Component {
     return (
       <div className="message-index">
         <div className="message-index-header">
-          <h1>{name}</h1>
+          {
+            (this.props.currentChatId === -1) ?
+              <UserSearchbar /> : <h1>{name}</h1>
+          }
         </div>
         <MessageFeed />
         <MessageTextBoxContainer />

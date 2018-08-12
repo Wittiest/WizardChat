@@ -2,6 +2,7 @@ import * as ChatUtil from '../util/api/chat_util';
 import { selectChatsInOrder } from './selectors';
 
 export const RECEIVE_CHAT = 'RECEIVE_CHAT';
+export const RECEIVE_NULL_CHAT = 'RECEIVE_NULL_CHAT';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
 export const RECEIVE_CHAT_ERRORS = 'RECEIVE_AUTH_ERRORS';
@@ -15,6 +16,11 @@ export const receiveCurrentChatId = (chatId) => ({
 const receiveChats = (payload) => ({
   type: RECEIVE_CHATS,
   payload
+});
+
+export const receiveNullChat = (chat) => ({
+  type: RECEIVE_NULL_CHAT,
+  chat
 });
 
 export const receiveChat = (messages) => ({

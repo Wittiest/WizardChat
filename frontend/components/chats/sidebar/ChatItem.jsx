@@ -19,6 +19,7 @@ class ChatItem extends React.Component {
     const firstMessage = this.props.firstMessage;
     let authorDisplay = "";
     let highlightCurrentChat = "";
+
     if (firstMessage.authorId === this.props.currentUserid) {
       authorDisplay = "You: ";
     } else if (this.props.chat.is_group_chat) {
@@ -27,6 +28,7 @@ class ChatItem extends React.Component {
     if (this.props.currentChatId === this.props.chat.id) {
       highlightCurrentChat = "selected-chat-item";
     }
+
     return (
       <li className={`chat-item ${highlightCurrentChat}`}>
         <button className="chat-item-button" onClick={this.updateCurrentChat}>

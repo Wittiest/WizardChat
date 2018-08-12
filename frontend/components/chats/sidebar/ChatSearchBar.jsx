@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Searchbar = () => (
+const ChatSearchbar = () => (
   <div className="searchbar-holder">
     <label className="searchbar-label">
       <i className="fa fa-search icon-shift" aria-hidden="true"></i>
@@ -13,4 +13,4 @@ const Searchbar = () => (
   </div>
 );
 
-export default Searchbar;
+export default ChatSearchbar;

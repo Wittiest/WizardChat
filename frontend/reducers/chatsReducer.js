@@ -1,6 +1,7 @@
 import {
   RECEIVE_CHATS,
-  RECEIVE_MESSAGE
+  RECEIVE_MESSAGE,
+  RECEIVE_NULL_CHAT
 } from '../actions/chat_actions';
 
 const chatsReducer = (state = {}, action) => {
@@ -11,6 +12,9 @@ const chatsReducer = (state = {}, action) => {
       return (action.payload.chats ? (action.payload.chats) : {});
     case RECEIVE_MESSAGE:
       newState[action.message.chatId].firstMessageId = action.message.id;
+      return newState;
+    case RECEIVE_NULL_CHAT:
+      newState[action.chat.id] = action.chat;
       return newState;
     default:
       return state;

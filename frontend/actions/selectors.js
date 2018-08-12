@@ -1,4 +1,7 @@
 export const firstMessageSelector = (messages, id) => {
+  if (id === Number.MAX_SAFE_INTEGER) {
+    return ({body: "", authorId: -1});
+  }
   return (messages[id]);
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ToolbarContainer from './Toolbar';
-import Searchbar from './Searchbar';
+import ChatSearchbar from './ChatSearchbar';
 import ChatFeed from './ChatFeed';
 
 class Sidebar extends React.Component {
@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
     return (
       <div className="sidebar">
         <ToolbarContainer />
-        <Searchbar />
+        <ChatSearchbar />
         <ChatFeed />
       </div>
     );
