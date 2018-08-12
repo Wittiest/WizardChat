@@ -6,18 +6,13 @@ import { connect } from 'react-redux';
 class MessageIndex extends React.Component {
 
   render() {
-    let messageFeed;
-    let name = "Direct Message";
-    if (this.props.currentChat && this.props.currentChat.name) {
-      name = this.props.currentChat.name;
-    }
     if (!this.props.currentChatId) {
       return (<div></div>);
     }
     return (
       <div className="message-index">
         <div className="message-index-header">
-          <h1>{name}</h1>
+          <h1>{this.props.currentChat.name}</h1>
         </div>
         <MessageFeed />
         <MessageTextBoxContainer />
