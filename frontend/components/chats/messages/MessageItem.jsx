@@ -12,7 +12,7 @@ const MessageItem = ({message, currentUserId}) => {
   }
   return (
     <li className={`message-item ${side}`}>
-      <span className={` message-item-text ${color}`}>
+      <span className={`message-item-text ${color}`}>
         {author + message.body}
       </span>
     </li>

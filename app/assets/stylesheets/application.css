@@ -178,6 +178,8 @@ html {
   list-style: none;
   margin-top: 4px;
   margin-bottom: 4px;
+  overflow: hidden;
+
 }
 
 .selected-chat-item {
@@ -291,6 +293,7 @@ html {
   display: flex;
   align-items: flex-end;
   margin-top: 5px;
+  overflow: hidden;
 }
 
 .message-item-text {
@@ -301,6 +304,8 @@ html {
   margin-left: 5px;
   border-radius: 1.3em;
   background-color: #F1F0F0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .left {
