@@ -28,7 +28,6 @@ class MessageFeed extends React.Component {
         console.log("---DISCONNECTED---");
       },
       received: (data) => {
-        console.log("DATA", data);
         this.props.receiveMessage(data);
       }
     });
