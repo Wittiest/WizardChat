@@ -9,10 +9,14 @@ class MessageIndex extends React.Component {
     if (!this.props.currentChatId) {
       return (<div></div>);
     }
+    let name = "";
+    if (this.props.currentChat) {
+      name = this.props.currentChat.name;
+    }
     return (
       <div className="message-index">
         <div className="message-index-header">
-          <h1>{this.props.currentChat.name}</h1>
+          <h1>{name}</h1>
         </div>
         <MessageFeed />
         <MessageTextBoxContainer />

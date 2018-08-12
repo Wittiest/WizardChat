@@ -36,7 +36,9 @@ export const fetchChats = () => dispatch => {
   ChatUtil.fetchChats().then(
     (payload) => {
       dispatch(receiveChats(payload));
-      dispatch(receiveCurrentChatId(selectChatsInOrder(payload.chats)[0].id));
+      if (payload.chats && payload.chats.length > 0) {
+        dispatch(receiveCurrentChatId(selectChatsInOrder(payload.chats)[0].id));
+      }
     },
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
