@@ -27,12 +27,9 @@ class ChatItem extends React.Component {
     }
     return (
       <li className="chat-item">
-        <button
-          className="chat-item-button"
-          onClick={this.updateCurrentChat}
-          >
-          <h1>{this.props.chat.name}</h1>
-          {authorDisplay + firstMessage.body}
+        <button className="chat-item-button" onClick={this.updateCurrentChat}>
+            <h2 className="auth-h2">{this.props.chat.name}</h2>
+            {authorDisplay + firstMessage.body}
         </button>
       </li>
     );

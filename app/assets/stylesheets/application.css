@@ -263,13 +263,14 @@ html {
   width: 100%;
   height: 50px;
   background-color: rgb(255,255,255);
-  /* border-top: 1px solid rgba(0, 0, 0, .10);
-  border-bottom: 1px solid rgba(0, 0, 0, .10); */
 }
 
 .message-input {
   border-style: none;
   width: 100%;
+  font-size: 14px;
+  height: 100%;
+  padding-left: 10px;
 }
 .message-input:focus {
   outline-width: 0;
