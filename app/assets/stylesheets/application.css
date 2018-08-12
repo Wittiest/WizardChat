@@ -337,4 +337,6 @@ html {
   justify-content: flex-start;
 }
 .message-feed {
+  flex: 1;
+  padding: 5px;
 }
