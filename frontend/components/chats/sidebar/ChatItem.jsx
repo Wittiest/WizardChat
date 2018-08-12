@@ -17,14 +17,22 @@ class ChatItem extends React.Component {
 
   render() {
     const firstMessage = this.props.firstMessage;
-
+    let authorDisplay = "";
+    if (firstMessage.authorId === this.props.currentUserid) {
+      console.log("HERE");
+      authorDisplay = "You: ";
+    } else if (this.props.chat.is_group_chat) {
+      console.log("HERE2");
+      authorDisplay = firstMessage.author + ": ";
+    }
     return (
       <li className="chat-item">
         <button
           className="chat-item-button"
           onClick={this.updateCurrentChat}
           >
-          {firstMessage.author + ": " + firstMessage.body}
+          <h1>{this.props.chat.name}</h1>
+          {authorDisplay + firstMessage.body}
         </button>
       </li>
     );
@@ -34,9 +42,10 @@ class ChatItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    chat: ownProps.chat, // USE FOR CHAT NAME
+    chat: ownProps.chat,
     firstMessage: firstMessageSelector(state.entities.messages,
-        ownProps.chat.firstMessageId)
+        ownProps.chat.firstMessageId),
+    currentUserid: state.session.id
   });
 };
 
