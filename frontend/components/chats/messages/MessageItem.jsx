@@ -4,14 +4,16 @@ import { connect } from 'react-redux';
 const MessageItem = ({message, currentUserId}) => {
   let side = "left";
   let color = "";
+  let author = message.author + ": ";
   if (currentUserId === message.authorId) {
     side = "right";
     color = "my-color";
+    author = "";
   }
   return (
     <li className={`message-item ${side}`}>
       <span className={` message-item-text ${color}`}>
-        {message.author + ": " + message.body}
+        {author + message.body}
       </span>
     </li>
   );
