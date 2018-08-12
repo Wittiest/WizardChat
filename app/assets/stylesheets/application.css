@@ -47,6 +47,8 @@
  }
  body {
  	line-height: 1;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Segoe UI, Helvetica, Arial;
  }
  ol, ul {
  	list-style: none;
@@ -77,7 +79,6 @@ html, body {
   margin-bottom: 12px;
   text-align: center;
   display: block;
-  font-family: Helvetica Neue, Helvetica
 }
 
 .auth-h2 {
@@ -87,7 +88,6 @@ html, body {
   text-align: center;
   margin-bottom: 6px;
   width: 100%;
-  font-family: Helvetica Neue, Helvetica;
   display: block;
 }
 
@@ -101,7 +101,6 @@ html, body {
   border-radius: 4px;
   color: rgba(0,0,0,1);
   display: block;
-  font-family: Helvetica Neue, Helvetica;
   font-size: 17px;
   height: 42px;
   margin-left: atuo;
@@ -123,7 +122,6 @@ html, body {
   border-radius: 4px;
   color: #fff;
   display: block;
-  font-family: Helvetica Neue, Helvetica;
   font-size: 17px;
   height: 44px;
   margin-bottom: 24px;
@@ -242,11 +240,11 @@ html {
 }
 
 .fa-pencil-square-o {
-  color: #0071E3;
+  color: #0084ff;
 }
 
 .fa-cog {
-  color: #0071E3;
+  color: #0084ff;
 }
 
 .searchbar-holder {
@@ -284,9 +282,12 @@ html {
 }
 
 .message-item-text {
-  padding: 5px;
-  margin-right: 5px;
-  border-radius: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 5px;
+  border-radius: 1.3em;
   background-color: lightgrey;
 }
 
@@ -299,7 +300,10 @@ html {
 }
 
 .my-color {
-  background-color: #6F86DC;
+  background-color: #0084ff;
+  color: #fff;
+  margin-right: 5px;
+  margin-left: 0px;
 }
 
 .main-index {
