@@ -36,7 +36,7 @@ export const fetchChats = () => dispatch => {
   ChatUtil.fetchChats().then(
     (payload) => {
       dispatch(receiveChats(payload));
-      if (payload.chats && payload.chats.length > 0) {
+      if (payload.chats && Object.keys(payload.chats).length > 0) {
         dispatch(receiveCurrentChatId(selectChatsInOrder(payload.chats)[0].id));
       }
     },
