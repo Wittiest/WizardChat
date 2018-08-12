@@ -175,10 +175,17 @@ html {
   padding-left: 0;
 }
 .chat-item {
-  background-color: grey;
   list-style: none;
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+.selected-chat-item {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.chat-item:hover {
+  background-color: rgba(0, 0, 0, .05);
 }
 
 .chat-item > h1 {
@@ -191,6 +198,10 @@ html {
   border-color: rgba(0,0,0,0);
   cursor: pointer;
   height: 64px;
+}
+
+.chat-item-button:focus {
+  outline: 0;
 }
 
 .toolbar {
@@ -289,7 +300,7 @@ html {
   padding-bottom: 5px;
   margin-left: 5px;
   border-radius: 1.3em;
-  background-color: lightgrey;
+  background-color: #F1F0F0;
 }
 
 .left {

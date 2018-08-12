@@ -18,15 +18,17 @@ class ChatItem extends React.Component {
   render() {
     const firstMessage = this.props.firstMessage;
     let authorDisplay = "";
+    let highlightCurrentChat = "";
     if (firstMessage.authorId === this.props.currentUserid) {
-      console.log("HERE");
       authorDisplay = "You: ";
     } else if (this.props.chat.is_group_chat) {
-      console.log("HERE2");
       authorDisplay = firstMessage.author + ": ";
     }
+    if (this.props.currentChatId === this.props.chat.id) {
+      highlightCurrentChat = "selected-chat-item";
+    }
     return (
-      <li className="chat-item">
+      <li className={`chat-item ${highlightCurrentChat}`}>
         <button className="chat-item-button" onClick={this.updateCurrentChat}>
             <h2 className="auth-h2">{this.props.chat.name}</h2>
             {authorDisplay + firstMessage.body}
@@ -40,6 +42,7 @@ class ChatItem extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return ({
     chat: ownProps.chat,
+    currentChatId: state.currentChatData.id,
     firstMessage: firstMessageSelector(state.entities.messages,
         ownProps.chat.firstMessageId),
     currentUserid: state.session.id

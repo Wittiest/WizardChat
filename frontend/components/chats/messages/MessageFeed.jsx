@@ -43,7 +43,6 @@ class MessageFeed extends React.Component {
 
   render() {
     const messages = this.props.messages;
-    console.log("messages", messages);
     return (
       <div className="message-feed-div">
         <ul className="message-feed">
