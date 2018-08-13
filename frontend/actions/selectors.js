@@ -37,14 +37,6 @@ export const selectChatMessages = (chatId, messages) => {
   return messagesInChat;
 };
 
-export const selectChatIdsFromChats = (chats) => {
-  const chatIds = [];
-  for (let i = 0; i < chats.length; i++) {
-    chatIds.push(chats[i].id);
-  }
-  return chatIds;
-};
-
 export const selectSearchResultUsers = (users, userChats) => {
   const matchingUsers = {};
   userChats.forEach((membership)=>{

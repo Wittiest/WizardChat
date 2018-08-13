@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { receiveMessage, fetchChat } from '../../../actions/chat_actions';
 import {
   selectChatMessages,
-  selectChatIdsFromChats,
   userIsInDM,
   usersInChat
 } from '../../../actions/selectors';
@@ -41,6 +40,29 @@ class MessageFeed extends React.Component {
     });
   }
 
+  componentWillReceiveProps(newProps) {
+    const oldChatIds = this.props.chatIds;
+    const newChatIds = newProps.chatIds;
+    const newChats = [];
+    for (let i = 0; i < newChatIds.length; i++) {
+      let found = false;
+      for (let j = 0; j < oldChatIds.length; j++) {
+        if (new String(oldChatIds[j]).valueOf()
+            === new String(newChatIds[i]).valueOf()) {
+          found = true;
+        }
+      }
+      if (!found) {
+        newChats.push(newChatIds[i]);
+      }
+    }
+    newChats.forEach((chatId)=>{
+      if (chatId !== -1) {
+        this.createSocket(chatId);
+      }
+    });
+  }
+
   render() {
     const messages = this.props.messages;
     return (
@@ -59,7 +81,6 @@ class MessageFeed extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  // LOGIC FOR LOADING DMs if currently selecting DM in user-search
   let messages = selectChatMessages(state.currentChatData.id,
     state.entities.messages);
   if (state.currentChatData.id === -1 ) {
@@ -73,7 +94,7 @@ const mapStateToProps = (state) => {
   }
   return ({
       currentChatId: state.currentChatData.id,
-      chatIds: selectChatIdsFromChats(Object.values(state.entities.chats)),
+      chatIds: Object.keys(state.entities.chats),
       messages: messages
     });
 };

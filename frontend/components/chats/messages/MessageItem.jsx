@@ -1,15 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const MessageItem = ({message, currentUserId}) => {
+const MessageItem = ({users, message, currentUserId}) => {
   let side = "left";
   let color = "";
-  let author = message.author + ": ";
+  let author;
+
+  users.forEach((user)=>{
+    if (message.authorId === user.id) {
+      author = user.firstName + ": ";
+    }
+  });
+
   if (currentUserId === message.authorId) {
     side = "right";
     color = "my-color";
     author = "";
   }
+
   return (
     <li className={`message-item ${side}`}>
       <span className={`message-item-text ${color}`}>
@@ -21,7 +29,8 @@ const MessageItem = ({message, currentUserId}) => {
 
 const mapStateToProps = (state, {message}) => ({
   currentUserId: state.session.id,
-  message
+  message,
+  users: Object.values(state.entities.users)
 });
 
 export default connect(mapStateToProps, null)(MessageItem);

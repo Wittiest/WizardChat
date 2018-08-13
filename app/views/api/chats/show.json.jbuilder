@@ -16,7 +16,6 @@ end
 json.messages do
   @chat.messages.sort {|m1, m2| m2.id <=> m1.id}.each do |message|
     json.set! message.id do
-      json.author message.author.first_name
       json.author_id message.author_id
       json.created_at message.created_at
       json.body message.body
