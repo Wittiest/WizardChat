@@ -1,20 +1,13 @@
 class Api::UsersController < ApplicationController
 
   def search
-    query = "" # TODO Extract from params
-    matches = []
+    query = params['query'].downcase
+    @users = []
     matched_users = User.all.each do |user|
       next if user.id == current_user.id
-      if user.first_name.include?(query) || user.last_name.include?(query) ||
-        (user.first_name + user.last_name).include?(query)
-        matches << user
-      end
+      @users << user if matched_name(user.first_name, user.last_name, query)
     end
-    if (matches.length >= 1)
-       # TODO jbuilder template of user info (id, full name)
-    else
-      # TODO custom JSON for no results
-    end
+    render :search
   end
 
   def create
@@ -30,5 +23,12 @@ class Api::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:email, :password, :first_name, :last_name)
+  end
+
+  def matched_name(first_name, last_name, query)
+    first_name, last_name = first_name.downcase, last_name.downcase
+    return true if first_name.include?(query)
+    return true if last_name.include?(query)
+    return true if (first_name + " " + last_name).include?(query)
   end
 end

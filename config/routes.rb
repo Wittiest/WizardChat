@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     resource :user, only: [ :create, :show]
 
-    post '/user_search', to: 'users#search'
+    post '/user_search/', to: 'users#search'
 
     resources :chats, only: [:index, :create, :show, :update] do
       resources :messages, only: [:create]
