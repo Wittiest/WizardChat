@@ -29,7 +29,6 @@ class Toolbar extends React.Component {
   gearSubmitHandler(e) {
     e.preventDefault();
     this.props.logout();
-    this.props.history.push('/');
   }
 
   render () {
@@ -48,8 +47,8 @@ class Toolbar extends React.Component {
 }
 
 
-const mapStateToProps = (state) => ({
-  errors: state.errors
+const mapStateToProps = (state, ownProps) => ({
+  errors: state.errors,
 });
 
 const mapDispatchToProps = (dispatch) => ({
