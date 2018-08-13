@@ -1,12 +1,12 @@
 import React from 'react';
 import ToolbarContainer from './Toolbar';
-import ChatSearchbar from './ChatSearchbar';
+import ChatSearchBar from './ChatSearchBar';
 import ChatFeed from './ChatFeed';
 
 const Sidebar = () => (
   <div className="sidebar">
     <ToolbarContainer />
-    <ChatSearchbar />
+    <ChatSearchBar />
     <ChatFeed />
   </div>
 );
