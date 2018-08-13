@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { searchUsers } from '../../../actions/user_actions';
+import UserSearchResults from './UserSearchResults';
 
 class UserSearchbar extends React.Component {
   constructor(props) {
@@ -9,11 +11,17 @@ class UserSearchbar extends React.Component {
   }
 
   updateHandler(fieldName) {
-    // Edit to do live search queries
-    return (e => this.setState({ [fieldName]: e.target.value }));
+    return ((e) => {
+      this.setState({ [fieldName]: e.target.value });
+      this.props.searchUsers(this.state.search);
+    });
   }
 
   render() {
+    let searchResults;
+    if (this.state.search.length > 0) {
+      searchResults = <UserSearchResults />;
+    }
     return (
       <div className='user-search-div'>
         <form className="user-search-form">
@@ -27,9 +35,14 @@ class UserSearchbar extends React.Component {
             value={this.state.search}>
           </input>
         </form>
+        {searchResults}
       </div>
     );
   }
 }
 
-export default connect(null, null)(UserSearchbar);
+const mapDispatchToProps = (dispatch) => ({
+  searchUsers: (query) => dispatch(searchUsers(query))
+});
+
+export default connect(null, mapDispatchToProps)(UserSearchbar);

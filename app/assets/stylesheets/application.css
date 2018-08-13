@@ -371,10 +371,9 @@ html {
 }
 
 .user-search-div {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
+  position: fixed;
   color: grey;
+  width: 100%;
 }
 
 .user-search-form {
@@ -395,4 +394,30 @@ html {
 
 #user-search-input:focus {
   outline-width: 0;
+}
+
+.user-search-results {
+  padding: 10px;
+  position: absolute;
+  top: 37px;
+  left: 23px;
+  width: 400px;
+  border-radius: 10px;
+  background-color: rgb(255,255,255);
+  border: 1px solid rgba(0, 0, 0, .10);
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.loading-users {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: content-box;
+}
+.loading-h2 {
+  font-size: 18px;
+  color: grey;
+  padding-left: 5px;
+  font-weight: 400;
 }
