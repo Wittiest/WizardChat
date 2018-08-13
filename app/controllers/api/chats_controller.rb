@@ -1,7 +1,14 @@
 class Api::ChatsController < ApplicationController
   def create
     chat_data = params[:chat_data]
-    @chat = Chat.new(name: chat_data[:chat][:name],
+    names = []
+    chat_data[:chatUserIds].each do |user_id|
+      first_name = User.find_by(id: user_id).first_name
+      names << first_name
+    end
+    names << current_user.first_name
+    chat_name = names.join(" && ")
+    @chat = Chat.new(name: chat_name,
       is_group_chat: chat_data[:chat][:is_group_chat])
     if @chat.save
       ChatUser.create(chat_id: @chat.id, user_id: current_user.id,

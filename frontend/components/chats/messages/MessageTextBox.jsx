@@ -58,7 +58,6 @@ class MessageTextBox extends React.Component {
           {
             chat: {
               is_group_chat: groupChat,
-              name: "Default Group Chat Name"
             },
             message: {
               body: this.state.body
