@@ -1,7 +1,8 @@
 import {
   RECEIVE_CHAT,
   RECEIVE_CHATS,
-  RECEIVE_MESSAGE
+  RECEIVE_MESSAGE,
+  REMOVE_CHAT
 } from '../actions/chat_actions';
 
 

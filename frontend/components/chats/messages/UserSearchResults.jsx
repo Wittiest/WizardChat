@@ -58,7 +58,7 @@ class UserSearchResults extends React.Component {
 
 const mapStateToProps = (state) => ({
   users: selectSearchResultUsers(
-    state.entities.users, Object.values(state.entities.chatUsers)), // DON'T DISPLAY USERS WITH -1 ASSOC
+  state.entities.users, Object.values(state.entities.chatUsers)),
   loading: state.ui.loading,
   chatUsers: state.entities.chatUsers
 });

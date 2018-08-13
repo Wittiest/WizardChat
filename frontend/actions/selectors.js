@@ -73,11 +73,21 @@ export const usersInChat = (chatId, userChats, users) => {
 } ;
 
 export const userIsInDM = (chats, userChats, userId) => {
+  for (let i = 0; i < userChats.length; i++) {
+    if (userChats[i].userId === userId && userChats[i].chatId !== -1 &&
+      userChats[i].chatId !== -2 && !chats[userChats[i].chatId].isGroupChat) {
+        return userChats[i].chatId;
+    }
+  }
+  return false;
+};
+
+export const selectChatSearchMembershipIds = (userChats) => {
+  const searchMembershipIds = [];
   userChats.forEach((membership)=>{
-    if (membership.chatId !== -1 && membership.userId === userId &&
-        !chats[membership.chatId].is_group_chat) {
-      return membership.chatId;
+    if (membership.chatId === -2 || membership.chatId === -1) {
+      searchMembershipIds.push(membership.id);
     }
   });
-  return false;
+  return searchMembershipIds;
 };

@@ -12,6 +12,7 @@ json.chat_users do
     json.set! fake_id do
       json.user_id user.id
       json.chat_id -2
+      json.id fake_id
     end
     fake_id -= 1
   end

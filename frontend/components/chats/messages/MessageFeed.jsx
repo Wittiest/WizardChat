@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { receiveMessage, fetchChat } from '../../../actions/chat_actions';
 import {
   selectChatMessages,
-  selectChatIdsFromChats
+  selectChatIdsFromChats,
+  userIsInDM,
+  usersInChat
 } from '../../../actions/selectors';
 
 class MessageFeed extends React.Component {
@@ -56,11 +58,25 @@ class MessageFeed extends React.Component {
 }
 
 
-const mapStateToProps = (state) => ({
-  currentChatId: state.currentChatData.id,
-  chatIds: selectChatIdsFromChats(Object.values(state.entities.chats)),
-  messages: selectChatMessages(state.currentChatData.id, state.entities.messages)
-});
+const mapStateToProps = (state) => {
+  // LOGIC FOR LOADING DMs if currently selecting DM in user-search
+  let messages = selectChatMessages(state.currentChatData.id,
+    state.entities.messages);
+  if (state.currentChatData.id === -1 ) {
+    const users = usersInChat(-1 , Object.values(state.entities.chatUsers),
+      state.entities.users);
+    if (users.length === 1) {
+      let oldChatId = (userIsInDM(state.entities.chats,
+        Object.values(state.entities.chatUsers), users[0].id));
+      messages = selectChatMessages(oldChatId, state.entities.messages);
+    }
+  }
+  return ({
+      currentChatId: state.currentChatData.id,
+      chatIds: selectChatIdsFromChats(Object.values(state.entities.chats)),
+      messages: messages
+    });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchChat: (chatId) => dispatch(fetchChat(chatId)),

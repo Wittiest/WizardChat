@@ -1,11 +1,19 @@
 import { RECEIVE_CHAT } from '../actions/chat_actions';
 import { RECEIVE_USERS, PURGE_SEARCH } from '../actions/user_actions';
-import { RECEIVE_CHAT_USER } from '../actions/chat_user_actions';
+import {
+  RECEIVE_CHAT_USER,
+  REMOVE_NULL_CHAT_USERS
+} from '../actions/chat_user_actions';
 
 const chatUsersReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
   switch(action.type) {
+    case REMOVE_NULL_CHAT_USERS:
+      action.nullUserIds.forEach((nullUserId)=>{
+        delete newState[nullUserId];
+      });
+      return newState;
     case RECEIVE_CHAT_USER:
       newState[action.chatUser.id] = action.chatUser;
       return newState;

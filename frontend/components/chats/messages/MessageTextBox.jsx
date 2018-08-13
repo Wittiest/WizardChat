@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import {
   createMessage,
   createChat,
-  receiveCurrentChatId } from '../../../actions/chat_actions';
-import { receiveChatUser } from '../../../actions/chat_user_actions';
-import { usersInChat, userIsInDM } from '../../../actions/selectors';
+  receiveCurrentChatId,
+  removeChat
+} from '../../../actions/chat_actions';
+import {
+  receiveChatUser,
+  removeNullChatUsers
+} from '../../../actions/chat_user_actions';
+import { usersInChat, userIsInDM} from '../../../actions/selectors';
 
 class MessageTextBox extends React.Component {
   constructor(props) {
@@ -28,22 +33,28 @@ class MessageTextBox extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
+    let chatId = this.props.currentChatId;
     if (this.props.currentChatId === -1) {
       let groupChat = !(this.props.currentChatUsers.length === 1);
-      let oldChat = (groupChat) || (userIsInDM(this.props.chats,
-        this.props.chatUsers, this.props.currentChatUsers[0]));
-      if (!groupChat && oldChat) {
-        receiveCurrentChatId(oldChat.id);
+      let oldChatId = (groupChat) ||
+      (userIsInDM(this.props.chats,
+        Object.values(this.props.chatUsers),
+        this.props.currentChatUsers[0].id));
+      if (!groupChat && oldChatId) {
+        this.props.receiveCurrentChatId(oldChatId);
+        chatId = oldChatId;
       } else {
         console.log("Create new group chat");
         // CREATE CHAT WITH IS_GROUP_CHAT TRUE
         // CHANGE CURRENT CHAT ID
         // ADD USER ASSOCIATIONS TO DB AND REDUX STATE
       }
+      this.props.removeChat(-1);
+      this.props.removeNullChatUsers(this.props.chatUsers);
     }
     this.props.createMessage({
       body: this.state.body,
-      chatId: this.props.currentChatId
+      chatId
     });
     this.setState({body: ''});
   }
@@ -80,7 +91,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMessage(message)),
-  receiveCurrentChatId: (chatId) => dispatch(receiveCurrentChatId(chatId))
+  receiveCurrentChatId: (chatId) => dispatch(receiveCurrentChatId(chatId)),
+  removeChat: (chatId) => dispatch(removeChat(chatId)),
+  removeNullChatUsers: (chatUsers) => dispatch(removeNullChatUsers(chatUsers))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageTextBox);

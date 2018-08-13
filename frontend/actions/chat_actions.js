@@ -7,6 +7,7 @@ export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
 export const RECEIVE_CHAT_ERRORS = 'RECEIVE_CHAT_ERRORS';
 export const RECEIVE_CURRENT_CHAT_ID = 'RECEIVE_CURRENT_CHAT_ID';
+export const REMOVE_CHAT = "REMOVE_CHAT";
 
 export const receiveCurrentChatId = (chatId) => ({
   type: RECEIVE_CURRENT_CHAT_ID,
@@ -26,6 +27,11 @@ export const receiveNullChat = (chat) => ({
 export const receiveChat = (payload) => ({
   type: RECEIVE_CHAT,
   payload
+});
+
+export const removeChat = (chatId) => ({
+  type: REMOVE_CHAT,
+  chatId
 });
 
 export const receiveMessage = (message) => ({
