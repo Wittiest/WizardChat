@@ -23,9 +23,11 @@ class ChatFeed extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  orderedChats: selectChatsInOrder(state.entities.chats)
-});
+const mapStateToProps = (state) => {
+  return ({
+    orderedChats: selectChatsInOrder(state.entities.chats)
+  });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchChats: () => dispatch(fetchChats())

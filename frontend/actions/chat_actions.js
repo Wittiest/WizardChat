@@ -5,7 +5,7 @@ export const RECEIVE_CHAT = 'RECEIVE_CHAT';
 export const RECEIVE_NULL_CHAT = 'RECEIVE_NULL_CHAT';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const RECEIVE_CHATS = 'RECEIVE_CHATS';
-export const RECEIVE_CHAT_ERRORS = 'RECEIVE_AUTH_ERRORS';
+export const RECEIVE_CHAT_ERRORS = 'RECEIVE_CHAT_ERRORS';
 export const RECEIVE_CURRENT_CHAT_ID = 'RECEIVE_CURRENT_CHAT_ID';
 
 export const receiveCurrentChatId = (chatId) => ({
@@ -23,9 +23,9 @@ export const receiveNullChat = (chat) => ({
   chat
 });
 
-export const receiveChat = (messages) => ({
+export const receiveChat = (payload) => ({
   type: RECEIVE_CHAT,
-  messages
+  payload
 });
 
 export const receiveMessage = (message) => ({
@@ -52,7 +52,7 @@ export const fetchChats = () => dispatch => {
 
 export const fetchChat = (chatId) => dispatch => {
   ChatUtil.fetchChat(chatId).then(
-    (messages) => dispatch(receiveChat(messages)),
+    (payload) => dispatch(receiveChat(payload)),
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };
@@ -60,6 +60,13 @@ export const fetchChat = (chatId) => dispatch => {
 export const createMessage = (message) => dispatch => {
   ChatUtil.createMessage(message).then(
     null, // We receive our own messages from broadcast. Change if we exclude
+    errors => dispatch(receiveChatErrors(errors.responseJSON))
+  );
+};
+
+export const createChat = (chat) => dispatch => {
+  ChatUtil.createChat(chat).then(
+    createdChat => dispatch(receiveChat(createdChat)),
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };

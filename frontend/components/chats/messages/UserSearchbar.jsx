@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchUsers } from '../../../actions/user_actions';
+import { searchUsers, purgeSearch } from '../../../actions/user_actions';
 import UserSearchResults from './UserSearchResults';
 
 class UserSearchbar extends React.Component {
@@ -13,7 +13,8 @@ class UserSearchbar extends React.Component {
   updateHandler(fieldName) {
     return ((e) => {
       this.setState({ [fieldName]: e.target.value });
-      this.props.searchUsers(this.state.search);
+      this.props.purgeSearch();
+      this.props.searchUsers(e.target.value);
     });
   }
 
@@ -42,7 +43,8 @@ class UserSearchbar extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  searchUsers: (query) => dispatch(searchUsers(query))
+  searchUsers: (query) => dispatch(searchUsers(query)),
+  purgeSearch: () => dispatch(purgeSearch())
 });
 
 export default connect(null, mapDispatchToProps)(UserSearchbar);

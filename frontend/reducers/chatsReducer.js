@@ -1,13 +1,17 @@
 import {
   RECEIVE_CHATS,
   RECEIVE_MESSAGE,
-  RECEIVE_NULL_CHAT
+  RECEIVE_NULL_CHAT,
+  RECEIVE_CHAT
 } from '../actions/chat_actions';
 
 const chatsReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
   switch(action.type) {
+    case RECEIVE_CHAT:
+      newState[action.payload.chat.id] = action.payload.chat;
+      return newState;
     case RECEIVE_CHATS:
       return (action.payload.chats ? (action.payload.chats) : {});
     case RECEIVE_MESSAGE:

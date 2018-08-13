@@ -5,9 +5,10 @@ import {
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
+  const newState = Object.assign({}, state);
   switch(action.type) {
     case RECEIVE_USERS:
-      return action.users;
+      return Object.assign(newState, action.payload.users);
     default:
       return state;
   }

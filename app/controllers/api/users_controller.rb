@@ -2,10 +2,17 @@ class Api::UsersController < ApplicationController
 
   def search
     query = params['query'].downcase
+    userPriorityHash = Hash.new {|h, k| h[k] = []}
     @users = []
     matched_users = User.all.each do |user|
       next if user.id == current_user.id
-      @users << user if matched_name(user.first_name, user.last_name, query)
+      priority = matched_name(user.first_name, user.last_name, query)
+      userPriorityHash[priority] << user unless priority.nil?
+    end
+    (1..3).each do |n|
+      userPriorityHash[n].each do |user|
+        @users << user
+      end
     end
     render :search
   end
@@ -27,8 +34,8 @@ class Api::UsersController < ApplicationController
 
   def matched_name(first_name, last_name, query)
     first_name, last_name = first_name.downcase, last_name.downcase
-    return true if first_name.include?(query)
-    return true if last_name.include?(query)
-    return true if (first_name + " " + last_name).include?(query)
+    return 1 if first_name.include?(query) || last_name == query
+    return 2 if last_name.include?(query)
+    return 3 if (first_name + " " + last_name).include?(query)
   end
 end

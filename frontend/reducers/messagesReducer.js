@@ -12,7 +12,7 @@ const messagesReducer = (state = {}, action) => {
     case RECEIVE_CHATS:
       return Object.assign(newState, action.payload.messages);
     case RECEIVE_CHAT:
-      return Object.assign(newState, action.messages);
+      return Object.assign(newState, action.payload.messages);
     case RECEIVE_MESSAGE:
       newState[action.message.id] = action.message;
       return newState;

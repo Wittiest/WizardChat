@@ -19,3 +19,11 @@ export const createMessage = message => (
     data: { message: { body: message.body} }
   })
 );
+
+export const createChat = chat => (
+  $.ajax({
+    method: 'POST',
+    url: `/api/chats/`,
+    data: { chat }
+  })
+);

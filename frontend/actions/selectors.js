@@ -44,3 +44,40 @@ export const selectChatIdsFromChats = (chats) => {
   }
   return chatIds;
 };
+
+export const selectSearchResultUsers = (users, userChats) => {
+  const matchingUsers = {};
+  userChats.forEach((membership)=>{
+    if (membership.chatId === -2) {
+      let userId = membership.userId;
+      matchingUsers[userId] = users[membership.userId];
+    }
+  });
+  userChats.forEach((membership)=>{
+    if (membership.chatId === -1) {
+      let userId = membership.userId;
+      delete matchingUsers[userId];
+    }
+  });
+  return Object.values(matchingUsers);
+};
+
+export const usersInChat = (chatId, userChats, users) => {
+  let matchingUsers = [];
+  userChats.forEach((membership)=>{
+    if (membership.chatId === chatId) {
+      matchingUsers.push(users[membership.userId]);
+    }
+  });
+  return matchingUsers;
+} ;
+
+export const userIsInDM = (chats, userChats, userId) => {
+  userChats.forEach((membership)=>{
+    if (membership.chatId !== -1 && membership.userId === userId &&
+        !chats[membership.chatId].is_group_chat) {
+      return membership.chatId;
+    }
+  });
+  return false;
+};
