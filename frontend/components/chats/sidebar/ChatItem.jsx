@@ -21,8 +21,14 @@ class ChatItem extends React.Component {
 
     if (firstMessage.authorId === this.props.currentUserid) {
       authorDisplay = "You: ";
-    } else if (this.props.chat.is_group_chat) {
-      authorDisplay = firstMessage.author + ": ";
+    } else if (this.props.chat.isGroupChat) {
+      let author;
+      this.props.users.forEach((user)=>{
+        if (firstMessage.authorId === user.id) {
+          author = user;
+        }
+      });
+      authorDisplay = author.firstName + ": ";
     }
     if (this.props.currentChatId === this.props.chat.id) {
       highlightCurrentChat = "selected-chat-item";
@@ -45,7 +51,8 @@ const mapStateToProps = (state, ownProps) => ({
     currentChatId: state.currentChatData.id,
     firstMessage: firstMessageSelector(state.entities.messages,
         ownProps.chat.firstMessageId),
-    currentUserid: state.session.id
+    currentUserid: state.session.id,
+    users: Object.values(state.entities.users)
 });
 
 const mapDispatchToProps = (dispatch) => ({

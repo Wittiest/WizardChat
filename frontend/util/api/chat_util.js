@@ -20,10 +20,10 @@ export const createMessage = message => (
   })
 );
 
-export const createChat = chat => (
+export const createChat = chatData => (
   $.ajax({
     method: 'POST',
     url: `/api/chats/`,
-    data: { chat }
+    data: { chat_data: chatData }
   })
 );

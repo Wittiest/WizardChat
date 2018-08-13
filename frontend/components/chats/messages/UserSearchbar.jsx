@@ -1,14 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchUsers, purgeSearch } from '../../../actions/user_actions';
+import {
+  searchUsers,
+  purgeSearch,
+} from '../../../actions/user_actions';
+import { removeChatUser } from '../../../actions/chat_user_actions';
 import UserSearchResults from './UserSearchResults';
-import { usersInChat } from '../../../actions/selectors';
+import {
+  usersInChat,
+  selectNullChatMembershipId
+} from '../../../actions/selectors';
 
 class UserSearchbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {search: '', chosenUserIds: []};
     this.updateHandler = this.updateHandler.bind(this);
+    this.removeAssociation = this.removeAssociation.bind(this);
   }
 
   updateHandler(fieldName) {
@@ -16,6 +24,14 @@ class UserSearchbar extends React.Component {
       this.setState({ [fieldName]: e.target.value });
       this.props.purgeSearch();
       this.props.searchUsers(e.target.value);
+    });
+  }
+
+  removeAssociation(userId) {
+    return ((e) => {
+      e.preventDefault();
+      const assocId = selectNullChatMembershipId(userId, this.props.chatUsers);
+      this.props.removeChatUser(assocId);
     });
   }
 
@@ -43,9 +59,12 @@ class UserSearchbar extends React.Component {
           {
             this.props.currentlySelectedUsers.map(
               (user)=>(
-                <li key ={user.id} className="selected-user">
+                <button
+                  key ={user.id}
+                  className="selected-user"
+                  onClick={this.removeAssociation(user.id)}>
                   {user.firstName}
-                </li>
+                </button>
               )
             )
           }
@@ -78,12 +97,14 @@ const mapStateToProps = (state) => ({
   currentlySelectedUsers: usersInChat(
     -1,
     Object.values(state.entities.chatUsers),
-    state.entities.users)
+    state.entities.users),
+  chatUsers: state.entities.chatUsers
 });
 
 const mapDispatchToProps = (dispatch) => ({
   searchUsers: (query) => dispatch(searchUsers(query)),
-  purgeSearch: () => dispatch(purgeSearch())
+  purgeSearch: () => dispatch(purgeSearch()),
+  removeChatUser: (chatUserId) => dispatch(removeChatUser(chatUserId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSearchbar);

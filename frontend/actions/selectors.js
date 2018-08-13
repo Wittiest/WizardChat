@@ -91,3 +91,22 @@ export const selectChatSearchMembershipIds = (userChats) => {
   });
   return searchMembershipIds;
 };
+
+export const selectSelectedGroupMemberIds = (userChats) => {
+  const searchMembershipIds = [];
+  userChats.forEach((membership)=>{
+    if (membership.chatId === -1) {
+      searchMembershipIds.push(membership.userId);
+    }
+  });
+  return searchMembershipIds;
+};
+
+export const selectNullChatMembershipId = (userId, userChats) => {
+  for (let i in userChats) {
+    if (userChats[i].userId === userId && userChats[i].chatId === -1) {
+      return userChats[i].id;
+    }
+  }
+  return null;
+};

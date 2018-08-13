@@ -10,7 +10,11 @@ import {
   receiveChatUser,
   removeNullChatUsers
 } from '../../../actions/chat_user_actions';
-import { usersInChat, userIsInDM} from '../../../actions/selectors';
+import {
+  usersInChat,
+  userIsInDM,
+  selectSelectedGroupMemberIds
+} from '../../../actions/selectors';
 
 class MessageTextBox extends React.Component {
   constructor(props) {
@@ -33,7 +37,9 @@ class MessageTextBox extends React.Component {
 
   submitHandler(e) {
     e.preventDefault();
-    let chatId = this.props.currentChatId;
+    if (this.state.body.length === 0) {
+      return ;
+    }
     if (this.props.currentChatId === -1) {
       let groupChat = !(this.props.currentChatUsers.length === 1);
       let oldChatId = (groupChat) ||
@@ -42,21 +48,35 @@ class MessageTextBox extends React.Component {
         this.props.currentChatUsers[0].id));
       if (!groupChat && oldChatId) {
         this.props.receiveCurrentChatId(oldChatId);
-        chatId = oldChatId;
+        this.props.createMessage({
+          body: this.state.body,
+          chatId: oldChatId
+        });
+        this.setState({body: ''});
       } else {
-        console.log("Create new group chat");
-        // CREATE CHAT WITH IS_GROUP_CHAT TRUE
-        // CHANGE CURRENT CHAT ID
-        // ADD USER ASSOCIATIONS TO DB AND REDUX STATE
+        this.props.createChat(
+          {
+            chat: {
+              is_group_chat: groupChat,
+              name: "Default Group Chat Name"
+            },
+            message: {
+              body: this.state.body
+            },
+            chatUserIds:
+            selectSelectedGroupMemberIds(Object.values(this.props.chatUsers))
+          }
+      );
       }
       this.props.removeChat(-1);
       this.props.removeNullChatUsers(this.props.chatUsers);
+    } else {
+      this.props.createMessage({
+        body: this.state.body,
+        chatId: this.props.currentChatId
+      });
+      this.setState({body: ''});
     }
-    this.props.createMessage({
-      body: this.state.body,
-      chatId
-    });
-    this.setState({body: ''});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -93,7 +113,8 @@ const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMessage(message)),
   receiveCurrentChatId: (chatId) => dispatch(receiveCurrentChatId(chatId)),
   removeChat: (chatId) => dispatch(removeChat(chatId)),
-  removeNullChatUsers: (chatUsers) => dispatch(removeNullChatUsers(chatUsers))
+  removeNullChatUsers: (chatUsers) => dispatch(removeNullChatUsers(chatUsers)),
+  createChat: (chatData) => dispatch(createChat(chatData))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageTextBox);

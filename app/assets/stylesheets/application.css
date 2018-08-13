@@ -381,6 +381,7 @@ html {
   align-items: center;
   flex-direction: row;
   width: 100%;
+  overflow-x: scroll;
 }
 
 #user-search-input {
@@ -455,7 +456,19 @@ html {
   border-radius: 5px;
   padding: 5px;
   margin-left: 5px;
+  border-width: 0;
+  cursor: pointer;
+  font-size: 14px;
 }
+
+.selected-user:hover {
+  background-color: lightgrey;
+}
+
+.selected-user:focus {
+  outline-width: 0;
+}
+
 .selected-users {
   display: flex;
   flex-direction: row;

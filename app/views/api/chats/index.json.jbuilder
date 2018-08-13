@@ -1,4 +1,5 @@
 first_messages = []
+
 json.chats do
   @chats.each do |chat|
     name = chat.name
@@ -18,12 +19,21 @@ json.chats do
     end
   end
 end
+
 json.messages do
   first_messages.each do |msg|
     json.set! msg.id do
       json.extract! msg, :body, :created_at, :chat_id
-      json.author msg.author.first_name
       json.author_id msg.author_id
+    end
+  end
+end
+
+json.users do
+  first_messages.each do |msg|
+    author = msg.author
+    json.set! author.id do
+      json.extract! author, :first_name, :last_name, :id
     end
   end
 end

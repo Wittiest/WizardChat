@@ -70,9 +70,12 @@ export const createMessage = (message) => dispatch => {
   );
 };
 
-export const createChat = (chat) => dispatch => {
-  ChatUtil.createChat(chat).then(
-    createdChat => dispatch(receiveChat(createdChat)),
+export const createChat = (chatData) => dispatch => {
+  ChatUtil.createChat(chatData).then(
+    createdChat => {
+      dispatch(receiveChat(createdChat));
+      dispatch(receiveCurrentChatId(createdChat.chat.id));
+    },
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };

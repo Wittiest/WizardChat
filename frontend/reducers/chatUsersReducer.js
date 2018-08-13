@@ -1,8 +1,12 @@
 import { RECEIVE_CHAT } from '../actions/chat_actions';
-import { RECEIVE_USERS, PURGE_SEARCH } from '../actions/user_actions';
+import {
+  RECEIVE_USERS,
+  PURGE_SEARCH
+} from '../actions/user_actions';
 import {
   RECEIVE_CHAT_USER,
-  REMOVE_NULL_CHAT_USERS
+  REMOVE_NULL_CHAT_USERS,
+  REMOVE_CHAT_USER
 } from '../actions/chat_user_actions';
 
 const chatUsersReducer = (state = {}, action) => {
@@ -13,6 +17,9 @@ const chatUsersReducer = (state = {}, action) => {
       action.nullUserIds.forEach((nullUserId)=>{
         delete newState[nullUserId];
       });
+      return newState;
+    case REMOVE_CHAT_USER:
+      delete newState[action.chatUserId];
       return newState;
     case RECEIVE_CHAT_USER:
       newState[action.chatUser.id] = action.chatUser;

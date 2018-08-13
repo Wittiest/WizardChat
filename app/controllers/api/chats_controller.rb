@@ -1,9 +1,17 @@
 class Api::ChatsController < ApplicationController
   def create
-    @chat = Chat.new(chat_params)
+    chat_data = params[:chat_data]
+    @chat = Chat.new(name: chat_data[:chat][:name],
+      is_group_chat: chat_data[:chat][:is_group_chat])
     if @chat.save
       ChatUser.create(chat_id: @chat.id, user_id: current_user.id,
-      user_nickname: current_user.full_name)
+        user_nickname: current_user.full_name)
+      Message.create(body: chat_data[:message][:body],
+        author_id: current_user.id, chat_id: @chat.id)
+      chat_data[:chatUserIds].each do |user_id|
+        ChatUser.create(chat_id: @chat.id, user_id: user_id,
+          user_nickname: User.find_by(id: user_id).full_name)
+      end
       render :show
     else
       render json: @chat.errors.full_messages
@@ -20,6 +28,6 @@ class Api::ChatsController < ApplicationController
 
   private
   def chat_params
-    params.require(:chat).permit(:is_group_chat, :name)
+    params.require(:chat_data).permit(:chat, :message, :chat_user_ids)
   end
 end
