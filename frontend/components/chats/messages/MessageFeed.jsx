@@ -9,7 +9,6 @@ import {
 } from '../../../actions/selectors';
 
 class MessageFeed extends React.Component {
-
   createSocket(currentChatId) {
     let cable;
     if (process.env.NODE_ENV !== 'production') {
@@ -34,10 +33,10 @@ class MessageFeed extends React.Component {
   }
 
   componentDidMount() {
-      this.props.chatIds.forEach((id)=>{
-        this.props.fetchChat(id);
-        this.createSocket(id);
-      });
+    this.props.chatIds.forEach((id)=>{
+      this.props.fetchChat(id);
+      this.createSocket(id);
+    });
   }
 
   render() {
@@ -57,15 +56,11 @@ class MessageFeed extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-  return (
-    {
-      currentChatId: state.currentChatData.id,
-      chatIds: selectChatIdsFromChats(Object.values(state.entities.chats)),
-      messages: selectChatMessages(state.currentChatData.id, state.entities.messages)
-    }
-  );
-};
+const mapStateToProps = (state) => ({
+  currentChatId: state.currentChatData.id,
+  chatIds: selectChatIdsFromChats(Object.values(state.entities.chats)),
+  messages: selectChatMessages(state.currentChatData.id, state.entities.messages)
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchChat: (chatId) => dispatch(fetchChat(chatId)),

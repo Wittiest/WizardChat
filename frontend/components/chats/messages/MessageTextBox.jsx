@@ -24,7 +24,7 @@ class MessageTextBox extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.currentChatId != nextProps.currentChatId) {
+    if (this.props.currentChatId !== nextProps.currentChatId) {
       this.setState({body: ''});
     }
   }
@@ -45,11 +45,9 @@ class MessageTextBox extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-      currentChatId: state.currentChatData.id,
-    });
-};
+const mapStateToProps = (state) => ({
+  currentChatId: state.currentChatData.id,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMessage(message))

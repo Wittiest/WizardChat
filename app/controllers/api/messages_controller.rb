@@ -3,6 +3,7 @@ class Api::MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.author_id = current_user.id
     @message.chat_id = params[:chat_id]
+
     if @message.save
       render :show
     else

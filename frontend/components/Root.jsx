@@ -1,6 +1,6 @@
 import React from 'react';
 import App from './App';
-import { Route, HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 

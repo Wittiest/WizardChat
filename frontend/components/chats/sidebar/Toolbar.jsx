@@ -5,7 +5,6 @@ import {
   receiveCurrentChatId,
   receiveNullChat
 } from '../../../actions/chat_actions';
-import { withRouter } from 'react-router';
 
 class Toolbar extends React.Component {
 
@@ -59,4 +58,4 @@ const mapDispatchToProps = (dispatch) => ({
   receiveNullChat: (chat) => dispatch(receiveNullChat(chat))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Toolbar));
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

@@ -6,7 +6,6 @@ import { receiveCurrentChatId } from '../../../actions/chat_actions';
 class ChatItem extends React.Component {
   constructor(props) {
     super(props);
-
     this.updateCurrentChat = this.updateCurrentChat.bind(this);
   }
 
@@ -41,20 +40,16 @@ class ChatItem extends React.Component {
 }
 
 
-const mapStateToProps = (state, ownProps) => {
-  return ({
+const mapStateToProps = (state, ownProps) => ({
     chat: ownProps.chat,
     currentChatId: state.currentChatData.id,
     firstMessage: firstMessageSelector(state.entities.messages,
         ownProps.chat.firstMessageId),
     currentUserid: state.session.id
-  });
-};
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return ({
-    receiveCurrentChatId: (id) => dispatch(receiveCurrentChatId(id))
-  });
-};
+const mapDispatchToProps = (dispatch) => ({
+  receiveCurrentChatId: (id) => dispatch(receiveCurrentChatId(id))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatItem);
