@@ -28,8 +28,12 @@ class MessageIndex extends React.Component {
       return (<div></div>);
     }
     let name = "";
+    let invisibleButton = "invisible";
     if (currentChat) {
       name = currentChat.name;
+      if (currentChat.isGroupChat) {
+        invisibleButton = "";
+      }
     }
     let menuDiv;
     if (menuOpen) {
@@ -46,7 +50,7 @@ class MessageIndex extends React.Component {
                 <div className="header-section-h1">
                     <h1>{name}</h1>
                 </div>
-                <div className="header-section-button">
+                <div className={`header-section-button ${invisibleButton}`}>
                   <button
                     className="group-info-button"
                     onClick={this.menuHandler}>
