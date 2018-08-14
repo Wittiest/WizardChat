@@ -19,8 +19,8 @@ class Leave extends React.Component {
     this.props.closeChatMenu();
     const newChatId = receiveCurrentChatId(this.props.chats,
       this.props.currentChatId);
-    this.props.receiveCurrentChatId(newChatId);
     this.props.deleteChatUser(this.props.chatUserId);
+    this.props.receiveCurrentChatId(newChatId);
   }
 
   render() {
