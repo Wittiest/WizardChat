@@ -37,3 +37,12 @@ json.users do
     end
   end
 end
+
+json.chat_users do
+  first_messages.each do |msg|
+    chat_user = ChatUser.where(user_id: msg.author_id, chat_id: msg.chat_id)[0]
+    json.set! chat_user.id do
+      json.extract! chat_user, :chat_id, :user_id, :user_nickname
+    end
+  end
+end

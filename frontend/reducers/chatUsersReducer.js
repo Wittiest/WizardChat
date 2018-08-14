@@ -1,4 +1,4 @@
-import { RECEIVE_CHAT } from '../actions/chat_actions';
+import { RECEIVE_CHAT, RECEIVE_CHATS } from '../actions/chat_actions';
 import {
   RECEIVE_USERS,
   PURGE_SEARCH
@@ -27,6 +27,8 @@ const chatUsersReducer = (state = {}, action) => {
     case RECEIVE_USERS:
       return Object.assign(newState, action.payload.chatUsers);
     case RECEIVE_CHAT:
+      return Object.assign(newState, action.payload.chatUsers);
+    case RECEIVE_CHATS:
       return Object.assign(newState, action.payload.chatUsers);
     case PURGE_SEARCH:
       for (let i in newState) {

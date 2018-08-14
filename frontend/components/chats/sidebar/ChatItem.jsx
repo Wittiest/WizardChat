@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { firstMessageSelector } from '../../../actions/selectors';
+import {
+  firstMessageSelector,
+  getUserNickname
+} from '../../../actions/selectors';
 import { receiveCurrentChatId } from '../../../actions/chat_actions';
 
 class ChatItem extends React.Component {
@@ -15,22 +18,22 @@ class ChatItem extends React.Component {
   }
 
   render() {
-    const firstMessage = this.props.firstMessage;
+    const {firstMessage, chatUsers, currentChatId, chat} = this.props;
     let authorDisplay = "";
     let highlightCurrentChat = "";
 
     if (firstMessage.authorId === this.props.currentUserid) {
       authorDisplay = "You: ";
-    } else if (this.props.chat.isGroupChat) {
+    } else if (chat.isGroupChat) {
       let author;
       this.props.users.forEach((user)=>{
         if (firstMessage.authorId === user.id) {
           author = user;
         }
       });
-      authorDisplay = author.firstName + ": ";
+      authorDisplay = getUserNickname(chatUsers, author.id, chat.id)+ ": ";
     }
-    if (this.props.currentChatId === this.props.chat.id) {
+    if (currentChatId === chat.id) {
       highlightCurrentChat = "selected-chat-item";
     }
 
@@ -52,7 +55,8 @@ const mapStateToProps = (state, ownProps) => ({
     firstMessage: firstMessageSelector(state.entities.messages,
         ownProps.chat.firstMessageId),
     currentUserid: state.session.id,
-    users: Object.values(state.entities.users)
+    users: Object.values(state.entities.users),
+    chatUsers: Object.values(state.entities.chatUsers)
 });
 
 const mapDispatchToProps = (dispatch) => ({
