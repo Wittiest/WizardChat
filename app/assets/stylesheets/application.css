@@ -295,7 +295,7 @@ html {
   align-items: flex-end;
   margin-top: 5px;
   overflow: hidden;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .message-item-text {
@@ -391,8 +391,17 @@ html {
   font-size: 16px;
   display: flex;
   align-items: center;
-  color: grey;
 }
+
+.menu-users {
+  background-color: rgba(0,0,0,0);
+  border-bottom: 1px solid rgba(0, 0, 0, .20);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 .message-feed {
   flex: 1;
@@ -557,6 +566,18 @@ html {
   background-color: rgba(0,0,0,0);
   color: rgba(0,0,0,1);
   font-size: 16px;
+}
+
+.user-item {
+  width: 100%;
+  border: 0;
+  background-color: rgba(0,0,0,0);
+  color: rgba(0,0,0,1);
+  font-size: 16px;
+}
+
+.user-item:focus {
+  outline-width: 0;
 }
 
 #group-name-input:focus {

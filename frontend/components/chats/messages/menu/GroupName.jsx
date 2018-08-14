@@ -29,11 +29,15 @@ class GroupName extends React.Component {
     this.setState({ buttonSubmit: true });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  updateChat() {
     const newChat = this.props.currentChat;
     newChat.name = this.state.name;
     this.props.updateChat(newChat);
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.updateChat();
     document.getElementById('group-name-input').blur();
   }
 
@@ -43,9 +47,7 @@ class GroupName extends React.Component {
 
   onBlurInput(e) {
     e.preventDefault();
-    const newChat = this.props.currentChat;
-    newChat.name = this.state.name;
-    this.props.updateChat(newChat);
+    this.updateChat();
     setTimeout(()=>this.setState({ buttonSubmit: false }), 50);
     // SetTimeout necessary to prevent double click of editButton after clicking
     // save
@@ -77,16 +79,18 @@ class GroupName extends React.Component {
     const button = this.state.buttonSubmit ?
       (this.saveButton()) : (this.editButton());
     return (
-      <form className="group-name-form" onSubmit={this.onSubmit}>
-        <input
-          id="group-name-input"
-          value={this.state.name}
-          onChange={this.update}
-          onFocus={this.onFocusInput}
-          onBlur={this.onBlurInput}>
-        </input>
-        {button}
-      </form>
+      <div className="menu-header">
+        <form className="group-name-form" onSubmit={this.onSubmit}>
+          <input
+            id="group-name-input"
+            value={this.state.name}
+            onChange={this.update}
+            onFocus={this.onFocusInput}
+            onBlur={this.onBlurInput}>
+          </input>
+          {button}
+        </form>
+      </div>
     );
   }
 }

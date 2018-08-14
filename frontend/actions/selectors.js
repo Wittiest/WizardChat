@@ -115,11 +115,15 @@ export const selectChatsByQuery = (query, chats) => {
   return selectedChats;
 };
 
-export const getUserNickname = (userChats, userId, chatId) => {
+export const selectChatUser = (userChats, userId, chatId) => {
   for (let i = 0; i < userChats.length; i++) {
     if (userChats[i].chatId === chatId && userChats[i].userId === userId) {
-      return userChats[i].userNickname;
+      return userChats[i];
     }
   }
   return null;
+};
+
+export const getUserNickname = (userChats, userId, chatId) => {
+  return (selectChatUser(userChats, userId, chatId).userNickname);
 };

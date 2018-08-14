@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :messages, only: [:create]
     end
 
+    resources :chat_users, only: [:update, :create, :destroy]
+
     resource :session, only: [:create, :destroy]
   end
   mount ActionCable.server => '/cable'
