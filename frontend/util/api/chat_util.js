@@ -27,3 +27,11 @@ export const createChat = chatData => (
     data: { chat_data: chatData }
   })
 );
+
+export const updateChat = chat => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/chats/${chat.id}`,
+    data: { chat }
+  })
+);

@@ -79,3 +79,12 @@ export const createChat = (chatData) => dispatch => {
     errors => dispatch(receiveChatErrors(errors.responseJSON))
   );
 };
+
+export const updateChat = (chat) => dispatch => {
+  ChatUtil.updateChat(chat).then(
+    updatedChat => {
+      dispatch(receiveChat(updatedChat));
+    },
+    errors => dispatch(receiveChatErrors(errors.responseJSON))
+  );
+};

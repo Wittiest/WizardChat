@@ -33,8 +33,17 @@ class Api::ChatsController < ApplicationController
     @chat = Chat.find_by(id: params[:id])
   end
 
+  def update
+    @chat = Chat.find_by(id: params[:id])
+    if @chat.update(chat_params)
+      render :show
+    else
+      render json: @chat.errors.full_messages
+    end
+  end
+
   private
   def chat_params
-    params.require(:chat_data).permit(:chat, :message, :chat_user_ids)
+    params.require(:chat).permit(:name, :is_group_chat)
   end
 end
