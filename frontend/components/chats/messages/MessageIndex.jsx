@@ -7,6 +7,7 @@ import {
   closeChatMenu,
   openChatMenu
 } from '../../../actions/chat_menu_actions';
+import Menu from './Menu';
 
 class MessageIndex extends React.Component {
   constructor(props) {
@@ -19,6 +20,12 @@ class MessageIndex extends React.Component {
       this.props.closeChatMenu();
     } else {
       this.props.openChatMenu();
+    }
+  }
+
+  componentWillReceiveProps({currentChat, menuOpen}) {
+    if (menuOpen && currentChat && !currentChat.isGroupChat) {
+      this.props.closeChatMenu();
     }
   }
 
@@ -35,10 +42,7 @@ class MessageIndex extends React.Component {
         invisibleButton = "";
       }
     }
-    let menuDiv;
-    if (menuOpen) {
-      menuDiv = <div className="menu-div"></div>;
-    }
+    const menuDiv = (menuOpen) ? (<Menu />) : (undefined);
     return (
       <div className="message-index">
         <div className="message-index-header">
