@@ -7,7 +7,7 @@ import {
   closeChatMenu,
   openChatMenu
 } from '../../../actions/ui_actions';
-import Menu from './Menu';
+import Menu from './menu/Menu';
 
 class MessageIndex extends React.Component {
   constructor(props) {

@@ -117,8 +117,6 @@ export const selectChatsByQuery = (query, chats) => {
 
 export const getUserNickname = (userChats, userId, chatId) => {
   for (let i = 0; i < userChats.length; i++) {
-    console.log(userChats[i]);
-    console.log(chatId);
     if (userChats[i].chatId === chatId && userChats[i].userId === userId) {
       return userChats[i].userNickname;
     }

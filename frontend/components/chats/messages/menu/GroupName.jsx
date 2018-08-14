@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateChat } from '../../../actions/chat_actions';
+import { updateChat } from '../../../../actions/chat_actions';
 
-class Menu extends React.Component {
+
+class GroupName extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,12 +46,15 @@ class Menu extends React.Component {
     const newChat = this.props.currentChat;
     newChat.name = this.state.name;
     this.props.updateChat(newChat);
-    this.setState({ buttonSubmit: false });
+    setTimeout(()=>this.setState({ buttonSubmit: false }), 50);
+    // SetTimeout necessary to prevent double click of editButton after clicking
+    // save
   }
 
   saveButton() {
     return (
       <button
+        type="button"
         className="group-name-focus-button">
         <i className="fa fa-save fa-2x"></i>
       </button>
@@ -73,20 +77,16 @@ class Menu extends React.Component {
     const button = this.state.buttonSubmit ?
       (this.saveButton()) : (this.editButton());
     return (
-      <div className="menu-div">
-        <div className="menu-header">
-          <form className="group-name-form" onSubmit={this.onSubmit}>
-            <input
-              id="group-name-input"
-              value={this.state.name}
-              onChange={this.update}
-              onFocus={this.onFocusInput}
-              onBlur={this.onBlurInput}>
-            </input>
-            {button}
-          </form>
-        </div>
-      </div>
+      <form className="group-name-form" onSubmit={this.onSubmit}>
+        <input
+          id="group-name-input"
+          value={this.state.name}
+          onChange={this.update}
+          onFocus={this.onFocusInput}
+          onBlur={this.onBlurInput}>
+        </input>
+        {button}
+      </form>
     );
   }
 }
@@ -99,4 +99,4 @@ const mapDispatchToProps = (dispatch) => ({
   updateChat: (chat) => dispatch(updateChat(chat))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupName);
