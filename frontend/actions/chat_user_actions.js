@@ -1,5 +1,6 @@
 import { selectChatSearchMembershipIds } from './selectors';
 import * as ChatUserAPI from '../util/api/chat_user_util';
+import { removeChat } from './chat_actions';
 
 export const RECEIVE_CHAT_USER = "RECEIVE_CHAT_USER";
 export const REMOVE_CHAT_USER = "REMOVE_CHAT_USER";
@@ -23,5 +24,14 @@ export const removeNullChatUsers = (chatUsers) => ({
 export const updateChatUser = (chatUser) => dispatch => {
   ChatUserAPI.updateChatUser(chatUser).then(
     updatedChatUser => dispatch(receiveChatUser(updatedChatUser))
+  );
+};
+
+export const deleteChatUser = (chatUserId) => dispatch => {
+  ChatUserAPI.deleteChatUser(chatUserId).then(
+    deletedChatUser => {
+      dispatch(removeChatUser(deletedChatUser.id));
+      dispatch(removeChat(deletedChatUser.chatId));
+    }
   );
 };

@@ -11,6 +11,12 @@ class Api::ChatUsersController < ApplicationController
     end
   end
 
+  def destroy
+    @chat_user = ChatUser.find_by(id: params[:id])
+    @chat_user.destroy
+    render :show
+  end
+
   private
   def chat_user_params
     params.require(:chat_user).permit(:user_nickname, :chat_id, :user_id)

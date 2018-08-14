@@ -27,6 +27,18 @@ export const selectChatsInOrder = (chats) => {
   return orderedChats;
 };
 
+export const selectNewCurrentChat = (chats, excludeChatId) => {
+  const orderedChats = selectChatsInOrder(chats);
+  let deleteIndex = null;
+  for (let i = 0; i < orderedChats.length; i++) {
+    if (orderedChats[i].chatId === excludeChatId) {
+      deleteIndex = i;
+    }
+  }
+  if (deleteIndex) { delete orderedChats[deleteIndex];}
+  return orderedChats[0];
+};
+
 export const selectChatMessages = (chatId, messages) => {
   const messagesInChat = [];
   Object.values(messages).forEach((msg)=>{
@@ -125,5 +137,6 @@ export const selectChatUser = (userChats, userId, chatId) => {
 };
 
 export const getUserNickname = (userChats, userId, chatId) => {
-  return (selectChatUser(userChats, userId, chatId).userNickname);
+  const chatUser = selectChatUser(userChats, userId, chatId);
+  return (chatUser) ? (chatUser.userNickname) : null;
 };

@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { usersInChat } from '../../../../actions/selectors';
 import UserNickNameItem from './UserNickNameItem';
 
-class UserNickname extends React.Component {
+class UserManager extends React.Component {
   render() {
     return (
-      <ul className="menu-users">
-        <label>Users</label>
-        {
-          this.props.users.map((user)=>(
-            <UserNickNameItem key={user.id} user={user}/>
-          ))
-        }
-      </ul>
+        <ul className="menu-users">
+          <label className="menu-h1">Wizards</label>
+          {
+            this.props.users.map((user)=>(
+              <UserNickNameItem key={user.id} user={user}/>
+            ))
+          }
+        </ul>
     );
   }
 }
@@ -24,4 +24,4 @@ const mapStateToProps = ({entities, currentChatData}) => ({
 });
 
 
-export default connect(mapStateToProps, null)(UserNickname);
+export default connect(mapStateToProps, null)(UserManager);

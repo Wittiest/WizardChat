@@ -400,8 +400,49 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 
+.user-nickname-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.menu-h1 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.leave-group-div {
+  height: 8%;
+  background-color: rgba(0,0,0,0);
+
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leave-group-button {
+  background-color: #fa3c4c;
+  border: 1px solid #fa3c4c;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  cursor: pointer;
+
+}
+
+.leave-group-button:hover {
+  background-color: #af2a35;
+  border: 1px solid #af2a35;
+}
 
 .message-feed {
   flex: 1;

@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateChat } from '../../../../actions/chat_actions';
 import GroupName from './GroupName';
-import UserNickname from './UserNickname';
+import UserManager from './UserManager';
+import Leave from './Leave';
 
 class Menu extends React.Component {
 
@@ -10,7 +11,8 @@ class Menu extends React.Component {
     return (
       <div className="menu-div">
           <GroupName />
-          <UserNickname />
+          <UserManager />
+          <Leave />
       </div>
     );
   }

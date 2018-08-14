@@ -11,3 +11,10 @@ export const updateChatUser = chatUser => (
     }
   })
 );
+
+export const deleteChatUser = chatUserId => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/chat_users/${chatUserId}`,
+  })
+);
