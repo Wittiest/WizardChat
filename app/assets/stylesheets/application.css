@@ -279,7 +279,6 @@ html {
 
 .message-input {
   border-style: none;
-  width: 100%;
   font-size: 14px;
   height: 100%;
   padding-left: 10px;
@@ -293,6 +292,7 @@ html {
   align-items: flex-end;
   margin-top: 5px;
   overflow: hidden;
+  word-break: break-all;
 }
 
 .message-item-text {
@@ -360,6 +360,25 @@ html {
   flex: 1;
   justify-content: flex-start;
 }
+
+.message-index-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.message-index-main-holder {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.menu-div {
+  width: 30%;
+  background-color: rgba(0,0,0,0);
+  border-left: 1px solid rgba(0, 0, 0, .10);
+}
+
 .message-feed {
   flex: 1;
   padding: 5px;
@@ -474,4 +493,33 @@ html {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+}
+
+.header-section-div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.header-section-h1 {
+  position: absolute;
+}
+
+.header-section-button {
+  margin-left: auto;
+}
+
+.group-info-button {
+  color: #0084ff;
+  border: 0;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);
+}
+
+.group-info-button:hover {
+  color: blue;
+}
+
+.group-info-button:focus {
+  outline-width: 0
 }
