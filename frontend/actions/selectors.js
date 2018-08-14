@@ -102,3 +102,15 @@ export const selectNullChatMembershipId = (userId, userChats) => {
   }
   return null;
 };
+
+export const selectChatsByQuery = (query, chats) => {
+  const selectedChats = [];
+  const chatQuery = query.toLowerCase();
+  chats.forEach((chat)=>{
+    const chatName = chat.name.toLowerCase();
+    if (chatName.includes(chatQuery)) {
+      selectedChats.push(chat);
+    }
+  });
+  return selectedChats;
+};

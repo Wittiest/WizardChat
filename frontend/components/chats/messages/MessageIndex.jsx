@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {
   closeChatMenu,
   openChatMenu
-} from '../../../actions/chat_menu_actions';
+} from '../../../actions/ui_actions';
 import Menu from './Menu';
 
 class MessageIndex extends React.Component {

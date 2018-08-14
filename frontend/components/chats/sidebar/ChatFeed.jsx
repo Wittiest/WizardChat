@@ -2,7 +2,10 @@ import React from 'react';
 import ChatItem from './ChatItem';
 import { fetchChats } from '../../../actions/chat_actions';
 import { connect } from 'react-redux';
-import { selectChatsInOrder } from '../../../actions/selectors';
+import {
+  selectChatsInOrder,
+  selectChatsByQuery
+} from '../../../actions/selectors';
 
 class ChatFeed extends React.Component {
   componentWillMount() {
@@ -14,7 +17,7 @@ class ChatFeed extends React.Component {
     return (
       <ul className="chat-feed">
         {
-          Object.values(orderedChats).map((chat)=>{
+          orderedChats.map((chat)=>{
             return(<ChatItem key={chat.id} chat={chat} />);
           })
         }
@@ -23,11 +26,10 @@ class ChatFeed extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    orderedChats: selectChatsInOrder(state.entities.chats)
-  });
-};
+const mapStateToProps = (state) => ({
+    orderedChats: selectChatsByQuery(state.ui.searchQuery,
+      Object.values(selectChatsInOrder(state.entities.chats)))
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchChats: () => dispatch(fetchChats())
