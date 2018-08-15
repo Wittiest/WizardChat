@@ -6,8 +6,8 @@ const MessageItem = ({users, message, currentUserId, chatUsers, chat}) => {
   let side = "left";
   let color = "";
   let author="";
-  if (chat.isGroupChat) {
-    author = getUserNickname(chatUsers, message.authorId, message.chatId)
+  if (chat && chat.isGroupChat) {
+    author = getUserNickname(chatUsers, message.authorId, message.chatId);
   }
 
   if (currentUserId === message.authorId) {

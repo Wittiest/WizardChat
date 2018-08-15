@@ -65,12 +65,14 @@
  	border-collapse: collapse;
  	border-spacing: 0;
  }
-
-
-
 html, body {
   height: 100%
 }
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 .auth-h1 {
   color: rgba(0, 0, 0, 1);
@@ -227,7 +229,7 @@ html {
 .icon-shift {
   position: absolute;
   left: 14px;
-  top: 62px;
+  top: 60px;
 }
 
 .searchbar {
@@ -235,9 +237,11 @@ html {
   background-color: #f5f6f7;
   border-style: none;
   padding-left: 25px;
-  height: 30px;
+  height: 25px;
   width: 85%;
+  text-align: center;
 }
+
 .searchbar:focus {
   outline-width: 0;
 }
