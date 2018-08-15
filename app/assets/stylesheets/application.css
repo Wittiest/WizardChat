@@ -138,6 +138,7 @@ html, body {
 
 html {
   height: 100%;
+  background-color: rgba(255,255,255,1);
 }
 
 .auth-logo {
@@ -299,7 +300,7 @@ html {
   padding-bottom: 5px;
   margin-left: 5px;
   border-radius: 1.3em;
-  background-color: lightgray;
+  background-color: #F1EFF0;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -561,6 +562,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .header-section-h1 {
