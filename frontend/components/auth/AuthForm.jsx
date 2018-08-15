@@ -28,6 +28,7 @@ class AuthForm extends React.Component {
 
   demoHandler(e) {
     e.preventDefault();
+    // TODO Complete ghost-typing with setTimeout for demo login
     this.props.action(this.demo);
     this.props.history.push('/chats');
   }
@@ -99,6 +100,8 @@ class AuthForm extends React.Component {
         </Link>
         {errors}
         <form className="auth-form" onSubmit={this.submitHandler}>
+          // TODO 5 buttons with different wizard hats to choose for default wizard hat
+          // TODO Option to upload own avatar image w / preview
           {signupInputs}
           <input
             required

@@ -18,6 +18,8 @@ const MessageItem = ({users, message, currentUserId, chatUsers}) => {
   return (
     <li className={`message-item ${side}`}>
       <span className={`message-item-text ${color}`}>
+        {/*TODO display user avatar to left of message. Display nickname above*/}
+        {/*TODO Display message send time when hover on message*/}
         {author + message.body}
       </span>
     </li>

@@ -79,6 +79,7 @@ class GroupName extends React.Component {
       (this.saveButton()) : (this.editButton());
     return (
       <div className="menu-header">
+        {/*TODO Display group image in clickable button that can upload new image*/}
         <form className="group-name-form" onSubmit={this.onSubmit}>
           <input
             id="group-name-input"

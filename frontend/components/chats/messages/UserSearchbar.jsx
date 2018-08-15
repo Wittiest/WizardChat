@@ -21,6 +21,7 @@ class UserSearchbar extends React.Component {
 
   updateHandler(fieldName) {
     return ((e) => {
+      e.preventDefault();
       this.setState({ [fieldName]: e.target.value });
       this.props.purgeSearch();
       this.props.searchUsers(e.target.value);
@@ -75,9 +76,11 @@ class UserSearchbar extends React.Component {
     }
     return (
       <div className='user-search-div'>
-        <form className="user-search-form">
-          <label>To:
-          </label>
+        <form
+          autoComplete = "off"
+          className="user-search-form"
+          onSubmit={e=>e.preventDefault()}>
+          <label>To:</label>
           {selectedUsers}
           <input
             id="user-search-input"

@@ -42,6 +42,7 @@ class ChatItem extends React.Component {
         <button className="chat-item-button" onClick={this.updateCurrentChat}>
             <h2 className="auth-h2 chat-item-align">{this.props.chat.name}</h2>
             <h3 className="chat-item-align">{authorDisplay + firstMessage.body}</h3>
+            {/*TODO Display message time sent at bottom left of message*/}
         </button>
       </li>
     );
