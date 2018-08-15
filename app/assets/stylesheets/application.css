@@ -392,7 +392,8 @@ html {
 }
 
 .menu-header {
-  height: 8%;
+  height: 7%;
+  padding: 10px;
   background-color: rgba(0,0,0,0);
   border-bottom: 1px solid rgba(0, 0, 0, .20);
   font-size: 16px;
@@ -401,13 +402,13 @@ html {
 }
 
 .menu-users {
+  padding: 10px;
   background-color: rgba(0,0,0,0);
   border-bottom: 1px solid rgba(0, 0, 0, .20);
   font-size: 16px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
 }
 
 .user-nickname-item {
