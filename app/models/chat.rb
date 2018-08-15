@@ -12,6 +12,8 @@
 class Chat < ApplicationRecord
   validates :is_group_chat, inclusion: { in: [ true, false ] }
 
+  has_one_attached :chat_image
+
   has_many :messages
   has_many :chat_users
   has_many :users,

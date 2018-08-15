@@ -5,7 +5,7 @@ import {
   receiveCurrentChatId,
   receiveNullChat
 } from '../../../actions/chat_actions';
-
+import { closeChatMenu } from '../../../actions/ui_actions';
 class Toolbar extends React.Component {
 
   constructor(props) {
@@ -16,6 +16,7 @@ class Toolbar extends React.Component {
 
   newChatHandler(e) {
     e.preventDefault();
+    this.props.closeChatMenu();
     const newMessageChat = {
       id: -1,
       firstMessageId: Number.MAX_SAFE_INTEGER,
@@ -53,6 +54,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
+  closeChatMenu: () => dispatch(closeChatMenu()),
   receiveCurrentChatId: (id) => dispatch(receiveCurrentChatId(id)),
   receiveNullChat: (chat) => dispatch(receiveNullChat(chat))
 });

@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_one_attached :profile_image
+
   has_many :messages,
   class_name: :Message,
   foreign_key: :author_id

@@ -48,18 +48,18 @@ class GroupName extends React.Component {
   onBlurInput(e) {
     e.preventDefault();
     this.updateChat();
-    setTimeout(()=>this.setState({ buttonSubmit: false }), 50);
+    this.setState({ buttonSubmit: false });
     // SetTimeout necessary to prevent double click of editButton after clicking
     // save
   }
 
   saveButton() {
     return (
-      <button
+      <div
         type="button"
         className="group-name-focus-button">
-        <i className="fa fa-save fa-2x"></i>
-      </button>
+        <i className="fa fa-save fa-lg"></i>
+      </div>
     );
   }
 
