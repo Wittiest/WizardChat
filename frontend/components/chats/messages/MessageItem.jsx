@@ -6,8 +6,8 @@ const MessageItem = ({users, message, currentUserId, chatUsers, chat}) => {
   let side = "left";
   let color = "";
   let author="";
-  if (chat.isGroup) {
-    author = getUserNickname(chatUsers, message.authorId, message.chatId)+": ";
+  if (chat.isGroupChat) {
+    author = getUserNickname(chatUsers, message.authorId, message.chatId)
   }
 
   if (currentUserId === message.authorId) {
@@ -18,10 +18,11 @@ const MessageItem = ({users, message, currentUserId, chatUsers, chat}) => {
 
   return (
     <li className={`message-item ${side}`}>
+      <span className="message-item-author-text">{author}</span>
       <span className={`message-item-text ${color}`}>
-        {/*TODO display user avatar to left of message. Display nickname above*/}
+        {/*TODO display user avatar to left of message.*/}
         {/*TODO Display message send time when hover on message*/}
-        {author + message.body}
+        {message.body}
       </span>
     </li>
   );

@@ -287,10 +287,17 @@ html {
 
 .message-item {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
   margin-top: 5px;
   overflow: hidden;
   word-break: break-word;
+}
+
+.message-item-author-text {
+  padding-left: 15px;
+  font-size: 12px;
+  color: #757475;
 }
 
 .message-item-text {
@@ -306,12 +313,10 @@ html {
 }
 
 .left {
-  flex-direction: row;
   margin-right: 50%;
 }
 
 .right {
-  flex-direction: row-reverse;
   margin-left: 50%;
 }
 
