@@ -318,6 +318,7 @@ html {
 
 .right {
   margin-left: 50%;
+  align-items: flex-end;
 }
 
 .my-color {
