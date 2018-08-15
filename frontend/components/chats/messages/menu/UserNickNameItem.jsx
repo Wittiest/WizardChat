@@ -48,16 +48,15 @@ class UserNickNameItem extends React.Component {
   onBlurInput(e) {
     e.preventDefault();
     this.updateChatUser();
-    setTimeout(()=>this.setState({ buttonSubmit: false }), 50);
+    this.setState({ buttonSubmit: false });
   }
 
   saveButton() {
     return (
-      <button
-        type="button"
-        className="group-name-focus-button">
-        <i className="fa fa-save fa-2x"></i>
-      </button>
+      <div
+        className="force-button-width group-name-focus-button">
+        <i className="fa fa-save fa-lg"></i>
+      </div>
     );
   }
 

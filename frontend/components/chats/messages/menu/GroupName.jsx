@@ -56,7 +56,6 @@ class GroupName extends React.Component {
   saveButton() {
     return (
       <div
-        type="button"
         className="group-name-focus-button">
         <i className="fa fa-save fa-lg"></i>
       </div>
