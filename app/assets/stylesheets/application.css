@@ -138,10 +138,6 @@ html, body {
 
 html {
   height: 100%;
-  background-image:
-    linear-gradient(
-      white, lightblue
-    );
 }
 
 .auth-logo {

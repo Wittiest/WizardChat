@@ -100,8 +100,8 @@ class AuthForm extends React.Component {
         </Link>
         {errors}
         <form className="auth-form" onSubmit={this.submitHandler}>
-          // TODO 5 buttons with different wizard hats to choose for default wizard hat
-          // TODO Option to upload own avatar image w / preview
+          {/* TODO 5 buttons with different wizard hats to choose for default wizard hat*/}
+          {/*TODO Option to upload own avatar image w / preview*/}
           {signupInputs}
           <input
             required
