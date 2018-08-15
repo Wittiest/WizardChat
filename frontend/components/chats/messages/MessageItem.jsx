@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getUserNickname } from '../../../actions/selectors';
 
-const MessageItem = ({users, message, currentUserId, chatUsers}) => {
+const MessageItem = ({users, message, currentUserId, chatUsers, chat}) => {
   let side = "left";
   let color = "";
-  let author;
-
-  author = getUserNickname(chatUsers, message.authorId, message.chatId) + ": ";
+  let author="";
+  if (chat.isGroup) {
+    author = getUserNickname(chatUsers, message.authorId, message.chatId)+": ";
+  }
 
   if (currentUserId === message.authorId) {
     side = "right";
@@ -30,7 +31,8 @@ const mapStateToProps = (state, {message}) => ({
   currentUserId: state.session.id,
   message,
   users: Object.values(state.entities.users),
-  chatUsers: Object.values(state.entities.chatUsers)
+  chatUsers: Object.values(state.entities.chatUsers),
+  chat: state.entities.chats[state.currentChatData.id]
 });
 
 export default connect(mapStateToProps, null)(MessageItem);
