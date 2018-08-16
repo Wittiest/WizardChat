@@ -36,6 +36,7 @@ json.users do
   @chat.users.each do |user|
     json.set! user.id do
       json.extract! user, :id, :first_name, :last_name
+      json.image_url url_for(user.profile_image)
     end
   end
 end

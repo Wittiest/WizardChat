@@ -21,7 +21,7 @@ class ChatItem extends React.Component {
     const {firstMessage, chatUsers, currentChatId, chat} = this.props;
     let authorDisplay = "";
     let highlightCurrentChat = "";
-
+    let createdAt = firstMessage.createdAt || "";
     if (firstMessage.authorId === this.props.currentUserid) {
       authorDisplay = "You: ";
     } else if (chat.isGroupChat) {
@@ -36,13 +36,12 @@ class ChatItem extends React.Component {
     if (currentChatId === chat.id) {
       highlightCurrentChat = "selected-chat-item";
     }
-
     return (
       <li className={`chat-item ${highlightCurrentChat}`}>
         <button className="chat-item-button" onClick={this.updateCurrentChat}>
             <div className="chat-item-button-date-div">
               <h2 className="auth-h2 chat-item-align">{this.props.chat.name}</h2>
-              <h3>{firstMessage.createdAt.slice(11, 19)}</h3>
+              <h3>{createdAt.slice(11, 19)}</h3>
             </div>
             <h3 className="chat-item-align">{authorDisplay + firstMessage.body}</h3>
         </button>

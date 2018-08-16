@@ -7,6 +7,7 @@ import {
   OPEN_CHAT_MENU,
   RECEIVE_SEARCH_QUERY
 } from '../actions/ui_actions';
+import { REMOVE_CURRENT_USER } from '../actions/auth_actions';
 
 const _defaultState = { loading: false, chatMenuOpen: false, searchQuery: '' };
 
@@ -27,6 +28,8 @@ const errorsReducer = (state = _defaultState, action) => {
       newState.loading = true;
       return newState;
     case RECEIVE_USERS:
+      return _defaultState;
+    case REMOVE_CURRENT_USER:
       return _defaultState;
     default:
       return state;

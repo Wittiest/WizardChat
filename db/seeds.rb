@@ -1,6 +1,6 @@
 User.delete_all
 user1 = User.new(email: "harry@hogwarts.edu", first_name: "Harry",
-          last_name: "Potter", password: "123456")
+                last_name: "Potter", password: "123456")
 user2 = User.new(email: "draco@hogwarts.edu", first_name: "Draco",
           last_name: "Malfoy", password: "123456")
 user3 = User.new(email: "hermione@hogwarts.edu", first_name: "Hermione",
@@ -12,6 +12,16 @@ user1.save!
 user2.save!
 user3.save!
 user4.save!
+
+user1.profile_image.attach(io: File.open(File.join(
+  Rails.root, 'app/assets/images/red_wizard.png')), filename: "harry.png")
+user2.profile_image.attach(io: File.open(File.join(
+  Rails.root, 'app/assets/images/green_wizard.png')), filename: "draco.png")
+user3.profile_image.attach(io: File.open(File.join(
+  Rails.root, 'app/assets/images/red_wizard.png')), filename: "hermione.png")
+user4.profile_image.attach(io: File.open(File.join(
+  Rails.root, 'app/assets/images/red_wizard.png')), filename: "ron.png")
+
 
 Chat.delete_all
 

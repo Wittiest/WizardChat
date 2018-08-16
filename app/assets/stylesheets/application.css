@@ -322,7 +322,7 @@ html {
 
 .right {
   margin-left: 50%;
-  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .my-color {
@@ -658,4 +658,47 @@ html {
 .force-button-width {
   width: 22px;
   height: 22px;
+}
+
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.li-message-item {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.photo-input {
+  border-radius: 100px;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-image: url('https://s3-us-west-1.amazonaws.com/wizard-chat-production/black-wizard.png');
+  background-size: cover;
+  background-color: rgba(0,0,0,0);
+  font-size: 0px;
+  color: rgba(255,255,255,1);
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+  margin-bottom: 16px;
+  margin-left: 110px;
+  margin-right: 110px;
+}
+
+.photo-input:hover {
+  background-color: rgba(0,0,0,.1);
+  cursor: pointer;
+  font-size: 16px;
 }

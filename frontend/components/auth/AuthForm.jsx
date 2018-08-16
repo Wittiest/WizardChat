@@ -16,19 +16,55 @@ class AuthForm extends React.Component {
     this.renderLoginInputs = this.renderLoginInputs.bind(this);
     this.renderSignupInputs = this.renderSignupInputs.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleFile = this.handleFile.bind(this);
+  }
+
+  createNewMessageChat() {
+    const newMessageChat = {
+      id: -1,
+      firstMessageId: Number.MAX_SAFE_INTEGER,
+      isGroupChat: false,
+      name: "New Message"
+    };
+    this.props.receiveNullChat(newMessageChat);
+    this.props.receiveCurrentChatId(newMessageChat.id);
   }
 
   submitHandler(e) {
     e.preventDefault();
-    this.props.action(this.state);
-    if (this.props.formType === 'login') {
+    if (this.props.formType === 'signup') {
+      const formData = new FormData();
+      formData.append('user[email]', this.state.email);
+      formData.append('user[password]', this.state.password);
+      formData.append('user[first_name]', this.state.first_name);
+      formData.append('user[last_name]', this.state.last_name);
+      formData.append('user[profile_image]', this.state.profile_image);
+      this.props.action(formData);
+      this.createNewMessageChat();
+    } else {
       this.props.history.push('/chats');
+      this.props.action(this.state);
+    }
+  }
+
+  handleFile(e) {
+    e.preventDefault();
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () => {
+      this.setState({profile_image: file, photoUrl: fileReader.result});
+    };
+
+    if (file) {
+      fileReader.readAsDataURL(file);
     }
   }
 
   demoHandler(e) {
     e.preventDefault();
     // TODO Complete ghost-typing with setTimeout for demo login
+    // Add 4 default colored hats to choose from for a wizard, hover = name
     this.props.action(this.demo);
     this.props.history.push('/chats');
   }
@@ -58,7 +94,17 @@ class AuthForm extends React.Component {
 
   renderSignupInputs() {
     if (this.props.formType === 'signup') {
+      const preview = this.state.photoUrl ?
+      {backgroundImage: `url(${this.state.photoUrl})`}: {};
       return (<div>
+        <input
+          id = "file-input"
+          type="file"
+          className="hidden"
+          onChange={this.handleFile}/>
+        <label htmlFor="file-input" className="photo-input" style={preview}>
+          Upload
+        </label>
         <input
           required
           className="auth-textbox"
@@ -100,8 +146,6 @@ class AuthForm extends React.Component {
         </Link>
         {errors}
         <form className="auth-form" onSubmit={this.submitHandler}>
-          {/* TODO 5 buttons with different wizard hats to choose for default wizard hat*/}
-          {/*TODO Option to upload own avatar image w / preview*/}
           {signupInputs}
           <input
             required

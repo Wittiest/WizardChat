@@ -6,6 +6,8 @@ import {
   RECEIVE_CHAT
 } from '../actions/chat_actions';
 
+import { REMOVE_CURRENT_USER } from '../actions/auth_actions';
+
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
@@ -16,6 +18,8 @@ const usersReducer = (state = {}, action) => {
       return Object.assign(newState, action.payload.users);
     case RECEIVE_CHAT:
       return Object.assign(newState, action.payload.users);
+    case REMOVE_CURRENT_USER:
+      return {};
     default:
       return state;
   }

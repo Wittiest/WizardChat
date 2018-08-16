@@ -35,8 +35,10 @@ class MessageFeed extends React.Component {
 
   componentDidMount() {
     this.props.chatIds.forEach((id)=>{
-      this.props.fetchChat(id);
-      this.createSocket(id);
+      if (Number(id) !== -1) {
+        this.props.fetchChat(id);
+        this.createSocket(id);
+      }
     });
   }
 

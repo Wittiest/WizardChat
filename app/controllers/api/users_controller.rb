@@ -18,18 +18,34 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      login!(@user)
-      render :show
+    if params[:user][:profile_image] == "null"
+      @user = User.new(email: params[:user][:email],
+        password: params[:user][:password],
+        first_name: params[:user][:first_name],
+        last_name: params[:user][:last_name])
+      if @user.save
+        @user.profile_image.attach(io: File.open(File.join(Rails.root,
+          'app/assets/images/black_wizard.png')), filename: "default.png")
+        login!(@user)
+        render :show
+      else
+        render json: @user.errors.full_messages, status: 422
+      end
     else
-      render json: @user.errors.full_messages, status: 422
+      @user = User.new(user_params)
+      if @user.save
+        login!(@user)
+        render :show
+      else
+        render json: @user.errors.full_messages, status: 422
+      end
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name)
+    params.require(:user).permit(:email, :password, :first_name, :last_name,
+    :profile_image)
   end
 
   def matched_name(first_name, last_name, query)

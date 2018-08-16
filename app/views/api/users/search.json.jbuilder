@@ -2,6 +2,7 @@ json.users do
   @users.each do |user|
     json.set! user.id do
       json.extract! user, :first_name, :last_name, :id
+      json.image_url url_for(user.profile_image)
     end
   end
 end

@@ -34,6 +34,7 @@ json.users do
     author = msg.author
     json.set! author.id do
       json.extract! author, :first_name, :last_name, :id
+      json.image_url url_for(author.profile_image)
     end
   end
 end

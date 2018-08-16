@@ -4,6 +4,7 @@ import {
   RECEIVE_MESSAGE,
   REMOVE_CHAT
 } from '../actions/chat_actions';
+import { REMOVE_CURRENT_USER } from '../actions/auth_actions';
 
 
 const messagesReducer = (state = {}, action) => {
@@ -17,6 +18,8 @@ const messagesReducer = (state = {}, action) => {
     case RECEIVE_MESSAGE:
       newState[action.message.id] = action.message;
       return newState;
+    case REMOVE_CURRENT_USER:
+      return {};
     default:
       return state;
   }

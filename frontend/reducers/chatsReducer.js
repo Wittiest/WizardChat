@@ -5,11 +5,14 @@ import {
   RECEIVE_CHAT,
   REMOVE_CHAT
 } from '../actions/chat_actions';
+import { REMOVE_CURRENT_USER } from '../actions/auth_actions';
 
 const chatsReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
   switch(action.type) {
+    case REMOVE_CURRENT_USER:
+      return {};
     case REMOVE_CHAT:
       delete newState[action.chatId];
       return newState;

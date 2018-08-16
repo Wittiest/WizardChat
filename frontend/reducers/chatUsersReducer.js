@@ -8,11 +8,14 @@ import {
   REMOVE_NULL_CHAT_USERS,
   REMOVE_CHAT_USER
 } from '../actions/chat_user_actions';
+import { REMOVE_CURRENT_USER } from '../actions/auth_actions';
 
 const chatUsersReducer = (state = {}, action) => {
   Object.freeze(state);
   const newState = Object.assign({}, state);
   switch(action.type) {
+    case REMOVE_CURRENT_USER:
+      return {};
     case REMOVE_NULL_CHAT_USERS:
       action.nullUserIds.forEach((nullUserId)=>{
         delete newState[nullUserId];
