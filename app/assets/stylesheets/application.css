@@ -732,7 +732,7 @@ html {
 }
 
 .harry:hover {
-  background-image: linear-gradient(red, #0000);
+  background-image: linear-gradient(red, black);
 }
 
 .luna {
@@ -740,7 +740,7 @@ html {
 }
 
 .luna:hover {
-  background-image: linear-gradient(blue, #0000);
+  background-image: linear-gradient(blue, black);
 }
 
 .draco {
@@ -748,7 +748,7 @@ html {
 }
 
 .draco:hover {
-  background-image: linear-gradient(green, #0000);
+  background-image: linear-gradient(green, black);
 }
 
 .cedric {
@@ -756,7 +756,7 @@ html {
 }
 
 .cedric:hover {
-  background-image: linear-gradient(yellow, #0000);
+  background-image: linear-gradient(yellow, black);
 }
 
 .demo-profile-div {
