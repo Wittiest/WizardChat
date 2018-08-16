@@ -698,7 +698,69 @@ html {
 }
 
 .photo-input:hover {
-  background-color: rgba(0,0,0,.1);
+  background-color: rgba(0,0,0,1);
   cursor: pointer;
   font-size: 16px;
+}
+
+.demo-profile {
+  font-size: 0px;
+  border-radius: 70px;
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  background-color: rgba(0,0,0,0);
+  font-size: 0px;
+  color: rgba(255,255,255,1);
+  font-weight: 800;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 70px;
+  margin-right: 10px;
+  border: 0;
+}
+
+.demo-profile:hover {
+  background-color: rgba(0,0,0,.8);
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+}
+
+.harry {
+  background-image: url('https://s3-us-west-1.amazonaws.com/wizard-chat-production/red_wizard.png');
+}
+
+.harry:hover {
+  background-image: linear-gradient(red, #0000);
+}
+
+.luna {
+  background-image: url('https://s3-us-west-1.amazonaws.com/wizard-chat-production/blue_wizard.png');
+}
+
+.luna:hover {
+  background-image: linear-gradient(blue, #0000);
+}
+
+.draco {
+  background-image: url('https://s3-us-west-1.amazonaws.com/wizard-chat-production/green_wizard.png');
+}
+
+.draco:hover {
+  background-image: linear-gradient(green, #0000);
+}
+
+.cedric {
+  background-image: url('https://s3-us-west-1.amazonaws.com/wizard-chat-production/yellow_wizard.png');
+}
+
+.cedric:hover {
+  background-image: linear-gradient(yellow, #0000);
+}
+
+.demo-profile-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

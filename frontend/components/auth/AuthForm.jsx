@@ -7,12 +7,17 @@ class AuthForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props.user;
-    this.demo = {email: 'harry@hogwarts.edu', password: '123456'};
+    this.state = Object.assign(this.props.user, { demoDisplay: false});
+    this.harryDemo = {email: 'harry@hogwarts.edu', password: '123456'};
+    this.dracoDemo = {email: 'draco@hogwarts.edu', password: '123456'};
+    this.lunaDemo = {email: 'luna@hogwarts.edu', password: '123456'};
+    this.cedricDemo = {email: 'cedric@hogwarts.edu', password: '123456'};
 
     this.submitHandler = this.submitHandler.bind(this);
     this.updateHandler = this.updateHandler.bind(this);
     this.demoHandler = this.demoHandler.bind(this);
+    this.demoButtonHandler = this.demoButtonHandler.bind(this);
+    this.demoButtons = this.demoButtons.bind(this);
     this.renderLoginInputs = this.renderLoginInputs.bind(this);
     this.renderSignupInputs = this.renderSignupInputs.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
@@ -61,12 +66,68 @@ class AuthForm extends React.Component {
     }
   }
 
-  demoHandler(e) {
+  slowType(data) {
+    const email = String(data.email).split('');
+    const password = String(data.password).split('');
+    const passwordTyper = () => {
+      const passwordInterval = setInterval(() => {
+        if (password.length === 0) {
+          clearInterval(passwordInterval);
+          this.props.action(this.state);
+          this.props.history.push('/chats');
+        } else {
+          const char = password.splice(0, 1);
+          this.setState({password: this.state.password + char});
+        }
+      }, 80);
+    };
+
+    const emailInterval = setInterval(()=>{
+      if (email.length === 0) {
+        clearInterval(emailInterval);
+        passwordTyper();
+      } else {
+        const char = email.splice(0, 1);
+        this.setState({email: this.state.email + char});
+      }
+    },120);
+  }
+
+  demoHandler(demoData) {
+    return ((e) => {
+      e.preventDefault();
+      this.slowType(demoData);
+    });
+  }
+
+  demoButtonHandler(e) {
     e.preventDefault();
-    // TODO Complete ghost-typing with setTimeout for demo login
-    // Add 4 default colored hats to choose from for a wizard, hover = name
-    this.props.action(this.demo);
-    this.props.history.push('/chats');
+    this.setState({demoDisplay: !this.state.demoDisplay});
+  }
+
+  demoButtons() {
+    if (this.state.demoDisplay) {
+      return (
+        <div className="demo-profile-div">
+          <button
+            className="demo-profile harry"
+            onClick={this.demoHandler(this.harryDemo)}>Harry
+          </button>
+          <button
+            className="demo-profile luna"
+            onClick={this.demoHandler(this.lunaDemo)}>Luna
+          </button>
+          <button
+            className="demo-profile draco"
+            onClick={this.demoHandler(this.dracoDemo)}>Draco
+          </button>
+          <button
+            className="demo-profile cedric"
+            onClick={this.demoHandler(this.cedricDemo)}>Cedric
+          </button>
+        </div>
+      );
+    }
   }
 
   updateHandler(fieldName) {
@@ -82,12 +143,16 @@ class AuthForm extends React.Component {
 
   renderLoginInputs() {
     if (this.props.formType === 'login') {
+      const demoButtons = this.demoButtons();
       return (
-        <button
-          className="auth-button"
-          onClick={this.demoHandler}>
-          Demo Login
-        </button>
+        <div>
+          <button
+            className="auth-button"
+            onClick={this.demoButtonHandler}>
+            Demo Login
+          </button>
+          {demoButtons}
+        </div>
       );
     }
   }
@@ -152,6 +217,7 @@ class AuthForm extends React.Component {
             className="auth-textbox"
             onChange={this.updateHandler('email')}
             type="text"
+            value = {this.state.email}
             placeholder="Email">
           </input>
           <input
@@ -159,6 +225,7 @@ class AuthForm extends React.Component {
             className="auth-textbox"
             onChange={this.updateHandler('password')}
             type="password"
+            value = {this.state.password}
             placeholder="Password">
           </input>
           <input

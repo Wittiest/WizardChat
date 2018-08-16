@@ -7,11 +7,17 @@ user3 = User.new(email: "hermione@hogwarts.edu", first_name: "Hermione",
           last_name: "Granger", password: "123456")
 user4 = User.new(email: "ron@hogwarts.edu", first_name: "Ron",
           last_name: "Weasley", password: "123456")
+user5 = User.new(email: "luna@hogwarts.edu", first_name: "Luna",
+          last_name: "Lovegood", password: "123456")
+user6 = User.new(email: "cedric@hogwarts.edu", first_name: "Cedric",
+          last_name: "Diggory", password: "123456")
 
 user1.save!
 user2.save!
 user3.save!
 user4.save!
+user5.save!
+user6.save!
 
 user1.profile_image.attach(io: File.open(File.join(
   Rails.root, 'app/assets/images/red_wizard.png')), filename: "harry.png")
@@ -21,7 +27,10 @@ user3.profile_image.attach(io: File.open(File.join(
   Rails.root, 'app/assets/images/red_wizard.png')), filename: "hermione.png")
 user4.profile_image.attach(io: File.open(File.join(
   Rails.root, 'app/assets/images/red_wizard.png')), filename: "ron.png")
-
+user5.profile_image.attach(io: File.open(File.join(
+  Rails.root, 'app/assets/images/blue_wizard.png')), filename: "luna.png")
+user6.profile_image.attach(io: File.open(File.join(
+  Rails.root, 'app/assets/images/yellow_wizard.png')), filename: "cedric.png")
 
 Chat.delete_all
 
@@ -42,6 +51,10 @@ chat_user4 = ChatUser.create!(user_id: user3.id, chat_id: chat1.id,
   user_nickname: "The Brilliant")
 chat_user5 = ChatUser.create!(user_id: user4.id, chat_id: chat1.id,
   user_nickname: "Redhead")
+chat_user5 = ChatUser.create!(user_id: user5.id, chat_id: chat1.id,
+  user_nickname: "Crazy Chick")
+chat_user6 = ChatUser.create!(user_id: user6.id, chat_id: chat1.id,
+  user_nickname: "Cedric")
 
 Message.delete_all
 message1 = Message.create!(author_id: user1.id, chat_id: chat1.id,
@@ -56,3 +69,7 @@ message4 = Message.create!(author_id: user3.id, chat_id: chat1.id,
   body: "It's leviOsa, not levioSA!")
 message5 = Message.create!(author_id: user4.id, chat_id: chat1.id,
   body: "Just stop hermione.")
+message6 = Message.create!(author_id: user5.id, chat_id: chat1.id,
+  body: "Ron don't be mean to her. You're weird too.")
+message7 = Message.create!(author_id: user6.id, chat_id: chat1.id,
+  body: "Luna, how about you stop? You're acting undignified.")
