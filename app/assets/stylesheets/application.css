@@ -461,6 +461,11 @@ html {
   text-align: left;
 }
 
+.chat-item-button-date-div {
+  display: flex;
+  flex-direction: row;
+}
+
 .user-search-div {
   position: fixed;
   color: grey;
