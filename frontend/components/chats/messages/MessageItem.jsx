@@ -7,7 +7,10 @@ const MessageItem = ({users, message, currentUserId, chatUsers, chat,
   let side = "left";
   let color = "";
   let author="";
-  let leftImg = <img className="message-avatar" src={messageAuthor.imageUrl}/>;
+  let leftImg;
+  if (messageAuthor) {
+    leftImg = <img className="message-avatar" src={messageAuthor.imageUrl}/>;
+  }
   let rightImg;
   if (chat && chat.isGroupChat) {
     author = getUserNickname(chatUsers, message.authorId, message.chatId);
