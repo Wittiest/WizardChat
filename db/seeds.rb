@@ -42,17 +42,17 @@ ChatUser.delete_all
 chat_user1 = ChatUser.create!(user_id: user1.id, chat_id: chat1.id,
   user_nickname: "The Boy Who Lived")
 chat_user2 = ChatUser.create!(user_id: user2.id, chat_id: chat2.id,
-  user_nickname: "Elite Pureblooded Wizard")
+  user_nickname: "Pureblood Draco")
 chat_user3 = ChatUser.create!(user_id: user1.id, chat_id: chat3.id,
   user_nickname: "Harry Potter")
 chat_user3 = ChatUser.create!(user_id: user2.id, chat_id: chat3.id,
   user_nickname: "Draco Malfoy")
 chat_user4 = ChatUser.create!(user_id: user3.id, chat_id: chat1.id,
-  user_nickname: "The Brilliant")
+  user_nickname: "The Brilliant Hermione")
 chat_user5 = ChatUser.create!(user_id: user4.id, chat_id: chat1.id,
-  user_nickname: "Redhead")
+  user_nickname: "Redhead Ron")
 chat_user5 = ChatUser.create!(user_id: user5.id, chat_id: chat1.id,
-  user_nickname: "Crazy Chick")
+  user_nickname: "Idiosyncratic Luna")
 chat_user6 = ChatUser.create!(user_id: user6.id, chat_id: chat1.id,
   user_nickname: "Cedric")
 
