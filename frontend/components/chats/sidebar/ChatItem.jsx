@@ -17,6 +17,22 @@ class ChatItem extends React.Component {
     this.props.receiveCurrentChatId(this.props.chat.id);
   }
 
+  dateFormat(string) {
+    let tt = "am";
+    let hh = string.slice(0, 2);
+    if (Number(hh) > 12) {
+      tt = "pm";
+      hh = String(Number(hh)-12);
+    } else if (hh[0] === '0') {
+      if (hh[1] === '0')
+        hh = '12';
+      else
+        hh = hh[1];
+    }
+    let mm = string.slice(3, 5);
+    return (`${hh}:${mm}${tt}`);
+  }
+
   render() {
     const {firstMessage, chatUsers, currentChatId, chat} = this.props;
     let authorDisplay = "";
@@ -41,7 +57,7 @@ class ChatItem extends React.Component {
         <button className="chat-item-button" onClick={this.updateCurrentChat}>
             <div className="chat-item-button-date-div">
               <h2 className="auth-h2 chat-item-align">{this.props.chat.name}</h2>
-              <h3>{createdAt.slice(11, 19)}</h3>
+              <h3>{this.dateFormat(createdAt.slice(11, 19))}</h3>
             </div>
             <h3 className="chat-item-align">{authorDisplay + firstMessage.body}</h3>
         </button>
