@@ -5,3 +5,13 @@ export const searchUsers = (query) => (
     data: { query }
   })
 );
+
+export const updateUser = (user) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `/api/user/`,
+    data: user,
+    contentType: false,
+    processData: false
+  })
+);

@@ -42,6 +42,14 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    puts "PARAMS", params
+    @user = current_user
+    @user.profile_image.purge
+    @user.profile_image.attach(params[:user][:profile_image])
+    render :show
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password, :first_name, :last_name,

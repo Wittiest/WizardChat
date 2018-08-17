@@ -36,12 +36,16 @@ class Leave extends React.Component {
   }
 }
 
-const mapStateToProps = ({session, entities, currentChatData}) => ({
-  chatUserId: selectChatUser(Object.values(entities.chatUsers),
-    session.id, currentChatData.id).id,
-  currentChatId: currentChatData.id,
-  chats: entities.chats
-});
+const mapStateToProps = ({session, entities, currentChatData}) => {
+  const chatUser = selectChatUser(Object.values(entities.chatUsers),
+  session.id, currentChatData.id);
+  const chatUserId = chatUser ? chatUser.id : null;
+  return ({
+    chatUserId,
+    currentChatId: currentChatData.id,
+    chats: entities.chats
+  });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   closeChatMenu: () => dispatch(closeChatMenu()),

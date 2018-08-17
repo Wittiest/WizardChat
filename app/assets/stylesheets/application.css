@@ -712,7 +712,7 @@ html {
   background-color: rgba(0,0,0,0);
   font-size: 0px;
   color: rgba(255,255,255,1);
-  font-weight: 800;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
   line-height: 70px;
@@ -732,7 +732,8 @@ html {
 }
 
 .harry:hover {
-  background-image: linear-gradient(red, black);
+  background-color: #9c1203;
+  background-image: none;
 }
 
 .luna {
@@ -740,7 +741,8 @@ html {
 }
 
 .luna:hover {
-  background-image: linear-gradient(blue, black);
+  background-color: #00165e;
+  background-image: none;
 }
 
 .draco {
@@ -748,7 +750,8 @@ html {
 }
 
 .draco:hover {
-  background-image: linear-gradient(green, black);
+  background-color: #033807;
+  background-image: none;
 }
 
 .cedric {
@@ -756,11 +759,125 @@ html {
 }
 
 .cedric:hover {
-  background-image: linear-gradient(yellow, black);
+  background-color: #e3a000;
+  background-image: none;
 }
 
 .demo-profile-div {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.gear-menu {
+  width: 150px;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, .10);
+  display: flex;
+  flex-direction: column;
+}
+
+.gear-menu-button {
+  border: 0;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  color: rgb(0,0,0);
+  font-weight: 100;
+}
+
+.gear-menu-button:hover {
+  background-color: rgba(0,0,0, .10);
+  border: 0;
+  cursor: pointer;
+}
+
+.gear-menu-button:focus {
+  outline-width: 0;
+}
+
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-button {
+  border: 0;
+  font-size: 100%;
+  color:  #0084ff;
+  position: absolute;
+}
+
+.modal-button:hover {
+  cursor: pointer;
+}
+
+.modal-button:focus {
+  outline-width: 0;
+}
+
+.modal-menu-div {
+  border: 0;
+  width: 30%;
+  background-color: rgba(255,255,255,1);
+  border: 1px solid rgba(0, 0, 0, .20);
+  border: 0;
+  border-radius: 1%;
+  padding-bottom: 20%;
+}
+
+.title-modal-menu-div {
+  padding: 10px;
+  border: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: 1px solid rgba(0,0,0, .10);
+}
+
+.bold-h2 {
+  color: rgba(0, 0, 0, .75);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.photo-edit-label {
+  border-radius: 100px;
+  display: inline-block;
+  width: 100px;
+  background-image: url('https://s3-us-west-1.amazonaws.com/wizard-chat-production/black-wizard.png');
+  background-size: cover;
+  background-color: rgba(0,0,0,.05);
+  font-size: 0px;
+  color: rgba(255,255,255,1);
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
+
+.photo-edit-label:hover {
+  cursor: pointer;
+  background-color: rgba(0,0,0,.7);
+  font-size: 16px;
 }
