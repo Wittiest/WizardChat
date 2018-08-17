@@ -22,10 +22,8 @@ class MessageFeed extends React.Component {
       chatId: currentChatId
     }, {
       connected: () => {
-        console.log("CONNECTED!");
       },
       disconnected: () => {
-        console.log("---DISCONNECTED---");
       },
       received: (data) => {
         this.props.receiveMessage(data);

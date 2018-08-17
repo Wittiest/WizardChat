@@ -43,7 +43,6 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    puts "PARAMS", params
     @user = current_user
     @user.profile_image.purge
     @user.profile_image.attach(params[:user][:profile_image])

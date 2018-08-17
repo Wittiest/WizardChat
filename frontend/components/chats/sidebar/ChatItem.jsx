@@ -30,7 +30,11 @@ class ChatItem extends React.Component {
         hh = hh[1];
     }
     let mm = string.slice(3, 5);
-    return (`${hh}:${mm}${tt}`);
+    if (hh.length > 0) {
+      return (`${hh}:${mm}${tt}`);
+    } else {
+      return "";
+    }
   }
 
   render() {
