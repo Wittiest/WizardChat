@@ -24,6 +24,7 @@ class Message < ApplicationRecord
       body: body,
       author: author.first_name,
       chatId: chat_id,
-      authorId: author_id
+      authorId: author_id,
+      createdAt: created_at
   end
 end
